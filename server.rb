@@ -49,7 +49,7 @@ end
 Mongoid.load!('mongo.yml')
 
 get '/' do
-  send_file 'public/aanbod.html'
+  redirect 'https://www.airbnb.com/'
 end
 
 get '/apartments/:apartment_id' do

@@ -17549,6 +17549,12 @@
             if (pu === "true") {
                 alert('Your evidence of payment was successfully uploaded.');
             }
+            $("#fileToUpload").change(function() {
+                var str = $(this).val()
+                if (str != "") {
+                    $("#new_conf_form").submit();
+                }
+            });
         });
     </script>
 
@@ -23774,7 +23780,7 @@
     </style>
 
     <form id="new_conf_form" style="display:none;" action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="fileToUpload" id="fileToUpload" onchange="$(&quot;#new_conf_form&quot;).submit();" />
+        <input type="file" name="fileToUpload" id="fileToUpload"/>
     </form>
 </body>
 
