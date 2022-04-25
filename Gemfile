@@ -9,7 +9,4 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'mongoid'
 
-gem 'prawn-html'
-gem 'pdfkit'
-gem 'wkhtmltopdf-binary'
-gem 'docraptor'
+gem 'grover'

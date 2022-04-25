@@ -3,6 +3,7 @@ require 'sinatra'
 require 'sinatra/cookies'
 require 'mongoid'
 require 'PDFKit'
+require "grover"
 
 apartments = {
   denhaag1: {
@@ -130,7 +131,19 @@ end
 get '/invoice_file' do
   client = Guest.where(client_id: cookies['client_id']).first
   halt 404 unless client
+  # erb(:invoice, locals: {client: client, apt: apartments[client.selected_property.to_sym]})
   source = erb(:invoice, locals: {client: client, apt: apartments[client.selected_property.to_sym]})
-  PDFKit.new(source, :page_size => 'A4', :zoom => 1.5).to_file("./invoices/#{client.invoice_id}.pdf")
+  Grover.configure do |config|
+    config.options = {
+      format: 'A4',
+      margin: {
+        top: '2cm',
+        bottom: '3cm',
+        left: '1.9cm',
+        right: '1.9cm'
+      }
+    }
+  end
+  Grover.new(source).to_pdf("./invoices/#{client.invoice_id}.pdf")
   send_file "./invoices/#{client.invoice_id}.pdf"
 end
