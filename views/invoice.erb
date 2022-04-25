@@ -74,9 +74,9 @@
         <h3>Kosten</h3>
         <span style="float: right; text-align: right;">
           €<%= apt[:price] * client.number_of_months%><br><br>
-          €<%= apt[:price] %><br><br>
+          €<%= apt[:price] * 2 %><br><br>
           €0<br><br>
-          <b>€<%= apt[:price] * (client.number_of_months+1) %></b>
+          <b>€<%= apt[:price] * (client.number_of_months+2) %></b>
         </span>
         €<%= apt[:price]%> x <%= client.number_of_months %> maand<%= client.number_of_months == 1 ? '' : 'en' %><br><br>
         Borg<br><br>
