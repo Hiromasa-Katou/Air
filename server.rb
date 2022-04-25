@@ -8,14 +8,14 @@ require "grover"
 apartments = {
   denhaag1: {
     price: 1325,
-    title: 'Den Haag: Archipel apartment',
+    title: 'Den Haag: Archipel appartement',
     location: 'Den Haag',
     bedrooms: 2,
     description: 'Dit appartement met twee ruime slaapkamers is in goede staat en biedt veel ruimte en charme. Het ligt om de hoek van alle internationale organisaties, verschillende ambassades en Shell. De winkelstraat "Bankastraat" is op loopafstand en biedt veel leuke boetiekjes, restaurants en lunchrooms. Openbaar vervoer en de snelwegen zijn tevens op dichtbij en biedt hierdoor gemakkelijke toegang tot het stadscentrum, het strand van Scheveningen en alle uitvalswegen richting Rotterdam en Amsterdam.Indeling: eigen entree op begane grond, trap naar de eerste verdieping van het appartement. Vanuit de gang komt u in de ruime en lichte woonkamer met eetkamer aan de achterzijde. De gehele eerste etage is voorzien van een mooie houten vloer. De moderne, separaat gesitueerde keuken is voorzien van alle inbouwapparatuur zoals een oven, vriezer en vaatwasser. Er is een apart gastentoilet met wastafel in de gang.Trap naar de tweede verdieping. Ruime overloop met de cv-installatie in knieschot weggewerkt met schuifdeuren. Beide charmante slaapkamers zijn toegankelijk via de hal en zijn uitgerust met ingebouwde kasten. Tussen beide slaapkamers bevindt zich de nette en zeer grote badkamer die is uitgerust met een douche, bad, toilet en wastafel. Zeer ruim en charmant appartement, ideaal voor mensen die dicht bij hun werk en het centrum van de stad willen wonen.'
   },
   rotterdam1: {
     price: 1790,
-    title: 'Luxe gemeubileerd 4-kamerappartement',
+    title: 'Luxe gemeubileerd 4-kamer appartement',
     bedrooms: 3,
     location: 'Rotterdam',
     description: 'TE HUUR: Een zeer luxe gemeubileerd 4-kamerappartement op de 12de verdieping met parkeerplaats nummer 182 (gratis) en inpandig terras, welke een spectaculair uitzicht biedt op het Boerengat, de Maas en sky-line van Rotterdam. Zeer gunstig gelegen ten overstaan van openbaar vervoer (metro, tram en trein) en uitvalswegen. Winkels, diverse restaurants en uitgaansgelegenheden in de nabije omgeving. Alle voorzieningen van Kralingen en het centrum op ongeveer 10 minuten loopafstand.'
@@ -53,7 +53,7 @@ get '/' do
 end
 
 get '/apartments/:apartment_id' do
-  puts apartments.keys.inspect
+  # puts apartments.keys.inspect
   apt_id = params[:apartment_id].downcase.to_sym
   if !cookies['client_id']
     client = Guest.create
@@ -64,8 +64,8 @@ get '/apartments/:apartment_id' do
 end
 
 post '/update_guest' do
-  puts params
-  puts cookies['client_id']
+  # puts params
+  # puts cookies['client_id']
   client = Guest.where(client_id: cookies['client_id']).first
   halt 404 unless client
   halt 400 unless params['maanden'].to_i > 0
@@ -81,9 +81,8 @@ post '/update_guest' do
     number_of_guests: params['number_of_guests'].to_i,
     checkin_timestamp: checkin_timestamp.to_time.to_i
   )
-
-    # puts request.body.raw
-    redirect '/confirm'
+  # puts request.body.raw
+  redirect '/confirm'
 end
 
 get '/confirm' do
@@ -111,8 +110,6 @@ end
 get '/invoice' do
   client = Guest.where(client_id: cookies['client_id']).first
   halt 404 unless client
-  puts apartments
-  puts client.selected_property
   erb :air_step3, locals: {client: client, apt: apartments[client.selected_property.to_sym]}
 end
 
