@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=595px, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html, body{
+      margin: 0;
+      padding: 0;
+      font-family: Arial;
+      font-size: 90%;
+    }
+    .page {
+      /* padding: 40px; */
+      /* width: 595px;
+      height: 842px; */
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    .bordered_box {
+      display: inline-block;
+      box-sizing: border-box;
+      padding: 10px;
+      border:1px solid grey;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAABkCAYAAAD32uk+AAAABmJLR0QA/wD/AP+gvaeTAAAWq0lEQVR42u1dCZgdRRFeRRQQFS9EDgEFEQREgQCiEA6FYLhZs++9fTOzG1wIGJUrXEGD3AQRCSRcAoGEICQkIIQA4b4kgXBJMIQrHEoC5ASSTbL7rOqeJLub6ZrumZ7rUfV9/S18eTPT09P9d1V11V8NDQWQWnPrVrWK94da2RldK7vPwt834e9caG9AexraSPj3o2vl/ps2sLCwsBRdar17f65WcVwAt6nQapqtE8Dx/lqzexCPIAsLSzHBr+LuA226AfAFtcdq1eq2PJosLCzF0frK7sVSk4sFfiva4lrJOYpHloWFJd/g19i4Lmh9d1sCvu6t4pzHI8zCwpJX8Pt8YuC3snlDeKRZWFjyB4Al73oDMHsXNLrH4e94aI9Ce83AZHZ4tFlYWPIDfhWvrAFc80GDOwd+u13gPZq8zUCDHFQrue+E+gTL7o486iwsLNmDX7W6OQDSAtp/595Ua/Q20DSl14VrhkLrIO75Uq3PwC/w6LOwsGQLgGXnrhC/3fnRTGq3BNcvJe49mEefhYUlQ/DzDggxV8+KZ1o7/Yh7L6o1tW7IX4GFhSV98JPxfjMIze8hMGfXiA+y7ggCBEfyl2BhYclA+3P7E8C0sFapbGzlOY2Na8P9XlE8pwNM5R/y12BhYUkP/Nra1gTweT0t/xxok4cRz7qFvwgLC0t6AChYWxSAhGEsbW3rWH9myX1ESZ7Q3Poj/iosLCzJgx+EnwDovK0GwGTydiGUZndCCxzPX4aFhSV5ACx5AwkgehXN48SerQ656eTgaBYWlmTBz/PWEmlsau2vOdHnNzk/VqbMVdw7+QuxsLAkB0Bl5/eE7+/F2pAhn02+D+4t6owTb1f+ShnMi6aWTcAy2B/iNvvW+jnfz1XfoD8wb/cNbSnM3YJbfj/QGseGhs/U5wDIcJT/EnF/h6Uzoatbw/OWK/pxL0/VNDdEdw9oTwRo40CE6zXlY+G6f9Ui2YD5zV+U/NbDtcaxXjcSWc9D+eLT0kR+kVus7ssePF1TWRBtxEa0QiO/ImuNgAGQATB57a/kHZiuWSO0wA5VBgpP11Q0v+V69GXOyQyADIBFf/njiF3+Xxn1aQyx6PblKZvo2D9hwP34ETAGrc8AyABYzBeHoGYwOf9HUF39MhuTvGUbgjLrCZ6ySS2E/ptGYPNuYwBkACzmi1fcE6iqbdl+FO9mooZIH562iYz5AREA8DIGQAbAYmp/Zfc95cs2e72zBWdSC5xat0fymS4E5+AIAHgNAyADYL1pf5NzopHcTBzOHMJT1/J4Q961OQA6pzEAMgAW64Wr1S/CC80msj52y0U/gQ6L0AKf5wBXy+MNWjWM61tGAJghWQUDIANgxInjnUTs6HflTFP9BxGg3cjT1/Z4e78xAMDx2c5jBkAGQLvaX+6IB6C/2xJa4AusBSahBTqjNRbEq7VS6RsMgAyABdvhoTxlwainyBzhkns4T2HL4w3lDmCenOmXKQ3SvCfUGlu+mQMXCQMgA6DRxMaylHOKRj5KaoEl5zk+EU5o3Jubvw3jewyYxZfDWF8HgHM6gN8O+XHlMAAyABpNGO8UQpO6Ld99d2/lE2EWBkAGwKhaFO37a6rulPPJTp0IP8taIAMgAyADoPolK+6pxGnqhIJ8qLHqcAz3IJ7KDIAMgAyAq79ga+uX4AXeV/v+Wn5SjAnvbK9kjS67z9SzFlgrl78qcnUd5zvoy63rBYmHMOh/LLd+Fw9bVKUYbAEglHn9cq3J20yQvza2fSW344L1uktHfkvMA4tzwBYArhxHKJuL/10Q7c+9w+qzMMWu0dtATF4Ik8BCS6lpgSlTdyX3vWAildwSvNOVwrxH1pXV33cRhKvcD9r7GTjpAr7DmuD22Fx8B1VTLCJkeCGvwxbwTHEtLJLQawMWh3DRQNkFeJ9JAe+7XJRqLbktNgBQuFNK7rmY76446Z4HbQr05RKcUzbmMP0tBKCtsfpcR3IK57fon1ekrbZDm4HpiNAc3CTTBEA4HNsOxuh8yM1/HP59ScA1c6E9Cf2/CPP3k6wpFKb9fZCU70/QacvA6omKinIdImas7IzDqnJxi6qHaIFTCw18oi6KiMH7xDAlrUNuDN6WK8EPM2XCrqt45eAFoRUHuFAJ3uHXLsLv6Gt7n4f/PxHa/NDrSu4FcQAQY1zlpmGc74wL+TIEsRgbd3vIMyau/K2g+hcbfYdhPxcJ0AbgTBIAYQx7ITdnhHHECJShtabWDVM0nZzTCLqrSMWGRLBsxTkU7vFohEHoEHFkzd7PY7zTOOX9m9xfFc+8FTv9uAhjuTo/H2pR/dzvaf0+OwCsiRo0kvBihvb7RQVASfuGue/LYo7vMgGEETQtDQDsFBuXZGdfYmEeHGUdAGV86Kn6hLnKtkRo4AnUGA/S/j4kJmEv8w/p7eCbDrXYDUNbImiEftK+Sgt8qmCO/BaFiRujaQFYtgAoUxw/NJwv0QCQJNiN0JBDs+LuYxkAsV1tdx6449G1YA0AbY8jWoZJRp8gZbmOym3wEQdY2J16Njicqe4XAThuKzJrtNhNy+4Iy2NpuJCz1AAjbZhRATCJthy1NcsAmMA3Bv9cCAgaAGASbYlqHsZdYGuTfH9N1V2MTF50ZCY5mcpeNYImqtACnfvzD34E1RcDYBEAcMVc+1OuAVD2cVyOAVC6xQxMdt0d53dE3N8kQ23rgggv1W48CBXnCEMQnGAD4NP3+WU+4RgA7Y7j0fkGQJEy2pzz+bjcWvld/2TtbfVgVPfUD8nwyhqdx1CCkUhM0PUECmLWvi6PyuGIXpqsy0JPsSBEwcDE71W04G7ol5eLRcsAaLMtDdtwMwfAsjsL4whzvSHj+ocTcAtxZASnG/gEtO/jOBvBNQvIkyuMQYLgTL3Fj7GB7u0hg/BMUEwUMbEmK/tmAKbpnfbGPvCAUAf3Db+U6fI6BEAkZL0P2ijoxw3+6fgzIjTIPgC+L+P9RCW8V6B9HMuhTwRcxwDA5aKPeGhUcS6F/74W2j0h61KlFByWEADO8cfxSX8cP4lxrymxMk5EtHjZfc1GmEhIkfLFpiZrl/ueQJziapkUXe61D+H7uCFnpu/YCBNitnBBQIW+ns5sGTzs7e/fd2mBAfADEV5B7P7CqoHsEAsAiMAxDC0TxcHUjn6ox6wIAHOGNQDEk+aSc3zPd+7R1wpp6a1+zxstAuA8EXMIoUyBfat4O0v2IIP+2ag0iIcJhB9AmzoKBn4LQsNAe/2AmAHUpxDA9aZKXVd8wKeUcVsxglftBzmbanqQBeB5axlol/cVDAA7ZCZBtLSpCAA4SjeGz4/JQ0tqocH9F8L3Ws8CAF6mm5In0s6kRaDjQnjHEgBep90/6Y4bYGj5vBsp+0akIVXc6cQO1WQwuS4izOjzYgOCPFl+0AbFFf6WWOSX50P704zNkzv1dMywiTimpxcEANvj0pgZACBu5E5EhWJLuPZlgxPXk2MAYCduehGUif21+xdAZGsAgMtMMKTbM/pVt4brZxrMzdYIpqVzBHHTmbq+Nb84ziy1uWIn0Rkdx4QpPMpo4ZfdfytNdU0fZWLgJ0FhsebHfzt2uiCmG+U+ENq5NPa46gJgjxxi83kKCf7S56q1ecUAwDExvrleRg1YIpEBMGa8np+hNFtzHTxqvvvLxHmV+XukfkdFLqJKixxiWTNS5Wa+Z7YYMJFe2efzMwVAsm+r5WbvEn9MhdaSdwC8MDUAtECHhcH12toLMJhHBMBrY4yFZpyus1dkALRAh4VnENprwUQRgAnVl7L9TWxqMvQlYAeJqa0Q8Yr6Sd3+4c/rSse3wjeTEgD+XVN7uMlSqA0DoGUA9MflLj2N0xuYAQC2aPbtkCwBMCRyo6fiUjW5KZWfe5xhBwcrfQDg1LQKDkCKQADC7ob9HkBsAqdnePqr60PakQEwxwCo62sL2MgSB0AyGqIbqHjZA6BzsOb8vCI+iGCsk0ZCtOaAzLIPDuL00gq/H56YivABVThJ0uwTas10qc4JnS1CVwbAhAAQ55eMwwx75tOpA6D0p+tssgMyB0BZnkPDJ+49pIv+d0aJTYpgsr1kHSAwW8TCSXCXsRhkYpokDoDSga6zM99sb1NhAEyKEl+TAu6D1AFQMiTppMQdkzUA+s+copO9ouOv2444SV0YkbvsGtVJsn3/GFJ829EAuyzAucp0oJRZabUnJgSVMgAWAgBv0UmNYwAM/Xa3azxzgY7Gc6PtSUaEUbSbpKlpHrjsassH2KX/Z5n4QBI+ANlN0zQZzABYCADUozDrEcjPALjaM6/Vid8Ms6U3JwgGlkSlnvZZaRWnwMG1IGIARDMRThApi8M3qxW+Guc/aVa3woJTURL9GQBzCoCSyDU0YJg1wNA5OkGH2ToMRYcRFw9P5LQLclLtaoDumUoAj2GuytoISrA5PDUAJGMqu5n71zMAFkED1KqFMZcBMFQDfFInH1p9AywXqGaviJUD62tQnYpOnW0VIMruw6q85XjAKnIk27MuniTqUVDED6vaswyA+QZAv9jUfI1nPs8ASPRVnqbr5AZPISa582dT1gdDzWx60jU3/MWiChG52gK4XkNoXL9IDQT1GDE6seYvA2COAbDUsremP3csAyC17qFEpl7WyujgG9DFjqzw4PncY4p0LTt+QJIctOT+2pL5qWK0eSC9gxCqfkm3d/4jA2COAVDP/4cKyCAGwNj+P1E5UHVwcDxVCcoSSvclOnaaJc1ospK9A8zwxCctnECnowFCCUhdOiULxA0MgAnkAstohU7NhduLAVC55vfQzqmGdwrw/QG/FmYNGAx+DDt9nuI5r8cNhwmJX7zPGvhIHj7Vc+5JBwBFtovm4gG235ixigCAjQyA3Z7VJ9ZzqtX1BeOz3vebFZTRUxcACC6AWOMI5K6C61NvHGeqENQhLpps2Xd1NTGpDo2pFY1Oir4o4D0mpkXuYHzYo/DhRs259lOiPmIA7JkQEC3PWi5arawFkiuzLgAQFaKSs33Eg9WNSLYqXdYpweqcEEIHPOtnRCefjO6bE7xgy5RMyJb4BldNDjJXelQqAAgbhiHr7lSY1Ftp31+QoTrHGNW1+PQAYE3Uqai4x5rkW/tJ+7MNntGOC72OAbDmb65tRvNS8pS+b/StglxBeHJJXPRUIgu37E6zUV+kh/l7BfEew6y/gwSH59QVvVo2SRwAka0bwiMiFMQZI/wmCrNYhGZIjrWHDe/9aQPAFe0J4SJQEGOI8ClgIzbTVtxQ9vE6AsAVVtojWGRJ5V/FiAa/pMALEb7RxSrfziRiQh2RkObiEh2dZuoL9LNXFitrRNgoixc8ASvEewxN5zS4uqeBLzBo533YL1Q1zHdP3Ev4aRkAw7Q1YG2Bdod/KvkYwSepV9iJOLirOwDsmrCA1kq3cdT28wUSIQfWG8HQFmLxzLSdo9vt0IV8IbMaBnKglLvKrYmBjwhiVb7HfAwtSskXOIzrAucCAC2PJa2A1DEA2mydSgIUVK9tlJGM6As8knSMNnob6H0k9yCyQlgAlbhd8CHDUQakAoDydH0KA2BdAeDfNDY+BsCoc8IPfF6oJPq0mOuo1p7Iik6jNO6xTkj5vjGJg09j47rKAPKS+2JDSuKHVcxkAKwDAMQgdw3riwEwnA9TGWfon+6pLj4rHdMNHJ6U6hpQbKXHZD2XPPWxzDJD+DQvVE+O6p6pgaAMr3iBAbDQADhKN2aTAdCl6wxTdcAJFtrltvJHNU3I+4mXmIEaVvDHEZRQ7UTc25kpAs8WSl9qybmqIUVBZ68mwaZpm8YAuLJ9bFbXV6stA1/VKWYhNYUHwAUJWC1LYe2fQI6jz8yiymf9Z6oLFnx0IfUtRirMTqJmKRxMpFyrQ2RbBJsz1upyGPbHEadfVkwy5yr/OzEA+tRUkjmJ3LxN2tNRsq3qAADf89nbH7Y0jk9pBafDRy7lgdeuiyl8TsiLOT0G9zr699X9MniHqlH+YVraIFSugz7MiWbOimJQThfN8mMGwFWUSn5xqsGaRY0CfcQilCpiPmwdAOBjq8bRG2IUcN+D5g6ub9IeR/jxX5TxNymFbgScYlImxaIVGQwkePu2fyZgA0zZBCi0NmQoIuxInpaP1KDRWgZA8jhG5ves/CdyoNG8KDsnK1ulZZtgYPEOJK8TLbjUKtafxkL0Gu2A+P5cLAVJ9BGKYKGvdbUDKDRfJaB10iEZ4jcX2ylW754YPqbRx0T6lDXGPYAABEmOQ8exR2YGRn74G/ZLIXO0QyQAYOH2irezPXMNVNHMFmlTy0+JVDZB7lnrV92aJI9Ec7Ox/9cyewdVTCB8qIYciQDrZq+3H8jdJtK5Kk4/kaZoWO6UJci95OwrxhbHFcdXEEk4vWCjX49HSHfTBheDzFJbNY6Y/gaAFxjUbGWhEmk3qby0RP+wzAViV6BPjVMwgyclSSfGwsJix0E+V2FLH59pv2Ru670RAx7Py3xclbWPvUk861hY8gOAKlOzLfO+4amQdL6bJaOnXJtXMa7D0qAUY2FhibdQ2xUa4JG56J9wRAtHpw74zVbRBWUwrlcqNMAJPOtYWPIDgO8qivqclJ8+EgWaup5YZuz3695nRV2CnB2CsLB8ugFQzWM3PDd9lMHaH4XG/0RkOU5oY3lZ0c+jeNaxsORloSI9OhHgmXn/IBTDj0XTSxyncv7S6rMMFA4225uqO/GsY2HJjQYIQYiqPGALFcTiAQkE7Vbcuw0j6m9NirtQf1PxykpShhwc0LCwsKxYrLKqmaq498DM+iUi/gly05CUnyxBEED7TgU4P8gzjoUlbyCoJhN4LQuNxecnnBzK7kr/+1gE0dT7LnMmO7IglmVhYYkEgN4ZWTMZrzJ7kVlD1ACgwG2iX/9iYcjvJqedz0yUyGy3VYydhYXF5qKVNTUXq3m6+m+aSj9kXZIZoaDmM1T75SjDatQ+i4WSUtpIPMKdcD3PNBaW/GqBl1CUP0knxvvMLotCS+X1ZCWRgdKfhIDgh3CS3CfR/mNithqMl2KtYp5lLCx5BUCkn6HYVdC0S6A2iO/vG6FxsPGAypz1GTcWhtPmAF1PEu8A1exDClwP5xnGwpJ3EKRr9Mo8W4uhMQBcB2tw0mkdaCD7qybr8UwETItj1sen81YzUgOJJ88uFpZCmMLOuBAAmYOMq7HNRf34vhG6IS1oZsLvX9WMF7w9Djszcg0Kenj6NBpiKVv25lnFwlIUAJQm6dMaIDJVVHLTDDWRTM9IBunepxHCIv1mUGfXHJjEKbIujVanDLcBCm1FwaVAkJUV6BZo0MgfyzOKhaVoICiLk+hWaJovsi8q7iAwB/uCVrSbMEcr7u6y1KUIsZloyPH/Nt4ncv+RSxAqwRmwyMgwlbL3kKDWLrkt8C6HSt+iKNfZ5heOn2aQkXIuzyQWlmKD4JQManiORy3OyjuIWgTuWyn3vxM3A55BLCxFB0EoJykqqqcBHFjDA7SuhEz6YYbaYNS2AM18njksLPUEhNJ3Nzsh0PhIVpNK9qQUq1VZrDkaHCbU1LIJzxYWlnoEQTz1lMSk8ywBxofQhmIZwXTBXMQMTtY8iNErwAxlJnmGsLB8KoBQcN0dZ3Qg0FXbk0wpFTwVzvQ9mpu3EEXYZW1W0/fAzJMxNuMJWVhYigaGTd5mfv7rCD+85RXhy0NzueJOh7+PYg6sX7R5ryzYWfTM48rGgsMPqsmJ+EAR4iPKhc4VjDiSNXssvNPZtXJ1P92QGRYWlnzL/wGKw87f/nRwgQAAAABJRU5ErkJggg==" alt="" style="width: 30%; float: left;">
+    <div style='text-align: right'>
+      <b>Airbnb Ireland UC</b><br>
+      The Watermarque Building<br>
+      South Lotts Road<br>
+      Ringsend, Dublin 4<br>
+      Ireland<br>
+      IE BTW: IE9827384L
+    </div>
+    <hr>
+    <h1>Factuur #<%= client.invoice_id %></h1>
+    <div>
+      <span style="float: right; text-align: right;">
+        <b>Geaccepteerd</b><br>
+        <%=client.client_id%>
+      </span>
+      Gereserveerd door <b><%= client.first_name + ' ' + client.last_name %> </b><br>
+      <%= Time.now.strftime('%A, %B %d, %Y') %>
+    </div>
+    <div class="bordered_box" style="width: 40%;">
+      <span style="float: right; text-align: right;">
+        Huurperiode<br>
+        <%= client.number_of_months %>  maand<%= client.number_of_months == 1 ? '' : 'en' %>
+      </span>
+      Aankomstdatum<br>
+      <%= Time.at(client.checkin_timestamp).strftime('%b %-d, %Y')%>
+      <hr>
+      <h3>Entire apartment</h3>
+      <%= apt[:title] %>
+      <%= apt[:location] %><br>
+      Netherlands<br><br>
+      Hosted by Josef Werndl<br>
+      Email: chccocolate@gmail.com
+      <hr>
+      <h3>Naam huurder(s)</h3>
+      <%= client.first_name %> <%= client.last_name %> <br><br>
+    </div>
+    <div style="width: 56.5%; float: right;">
+      <div class="bordered_box" style='width: 100%;'>
+        <h3>Kosten</h3>
+        <span style="float: right; text-align: right;">
+          €<%= apt[:price] * client.number_of_months%><br><br>
+          €<%= apt[:price] %><br><br>
+          €0<br><br>
+          <b>€<%= apt[:price] * (client.number_of_months+1) %></b>
+        </span>
+        €<%= apt[:price]%> x <%= client.number_of_months %> maand<%= client.number_of_months == 1 ? '' : 'en' %><br><br>
+        Borg<br><br>
+        Airbnb servicekosten<br><br>
+        <b>Totaal</b>
+      </div>
+      <div class="bordered_box" style='width: 100%;'>
+        <h3>Betaling</h3>
+        <span style='color: red;'>Betalingsstatus: In afwachting<br>De betalingsgegevens staan op de volgende pagina</span><br><br>
+        <b>Te betalen <span style="float: right; text-align: right;">€<%= apt[:price] * (client.number_of_months+1) %></span></b>
+      </div>
+    </div>
+    <br><br><br><br><br>
+    <hr>
+    <h3>Restitutiebeleid</h3>
+    Als u door omstandigheden niet in staat bent om een geboekte reis met Airbnb te voltooien, en u kunt dit niet oplossen met uw gastheer, kan ons restitutiebeleid worden toegepast.
+    <h4>Restitutiebeleid voor gasten</h4>
+    Gratis annuleren tot 3 dagen voor aankomst. Indien er minder dan 14 dagen voor aankomst is gereserveerd, kan er tot 48 uur na het reserveren en tot 24 uur voor aankomst gratis worden geannuleerd. U zult bij het annuleren de totale huursom terugkrijgen, evenals de totale borgsom.
+    <br><br><br><br><br><br><br>
+  </div>
+  <div class="page">
+    <h3>Betalingsgegevens</h3>
+    Om uw boeking te bevestigen dient u het totale bedrag over te maken naar de tussenrekening van Airbnb. Na ontvangst van uw betaling is de boeking bevestigd. Airbnb geeft de betaling aan de verhuurder pas vrij nadat u als huurder heeft bevestigd dat alles conform de verhuurafspraken is nagekomen door de verhuurder (host).<br><br>
+
+    Stuur de betaling naar de volgende tussenrekening van AirBNB: <br><br>
+
+    Bank naam - ING <br>
+    IBAN rekeningnummer - NL80 INGB 0007 3904 65 <br>
+    Rekeninghouder - Koeriersdienst The A-Team <br>
+    BIC: INGBNL2A <br><br>
+    Omschrijving - €<%= apt[:price] * (client.number_of_months+2) %> <br><br>
+    Wij verzoeken u de omschrijving nauwkeurig in te vullen bij uw overschrijving. Uw boekingsnummer in de omschrijving is uniek en hiermee kunnen wij uw betalingen koppelen.<br><br>
+    <span style="text-size: 90%;">U zult een kopie van deze factuur per e-mail ontvangen.</span>
+    <br><br><br>
+    <hr>
+    <br>
+    * De <b>Airbnb</b> servicekosten zijn inclusief eventuele belastingen.<br>
+    <b>Annuleringsbeleid</b>: flexibel. U kunt tot en met 3 dagen voor u arriveert annuleren. U krijgt dan volledige restitutie. Uw borg krijgt u bij annuleren volledig vergoed. <br><br>
+    Betaling verwerkt door: <br><br>
+    <b>Airbnb</b><br>
+    <img src="data:image/png;base64,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
+" alt="" style="width: 30%; float: right;">
+    The Watermarque Building<br>
+    South Lotts Road,<br>
+    Ringsend<br>
+    Dublin 4<br>
+    Ireland
+  </div>
+</body>
+</html>
