@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Setup</title>
+	<link rel="icon" sizes="192x192" href="airbnb/static/icons/android-icon-192x192-c0465f9f0380893768972a31a614b670.png" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<div class="container mt-3">
+	<div class="text-right">
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+	    Add new
+	  </button>
+	</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Location</th>
+        <th>Bedrooms</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% apts.each_with_index  do |apt, i| %>
+	<tr>
+		<td><a href="/apartments/<%= apt.apt_id %>"><%= apt.apt_id %></td></a>
+		<td><%= apt.title %></td>
+		<td><%= apt.price %></td>
+		<td><%= apt.location %></td>
+		<td><%= apt.bedrooms %></td>
+		<td><%= apt.description %></td>
+		<td>
+			<form action="/setup/upload/<%= apt.apt_id %>" method="post" enctype="multipart/form-data">
+				<label class="btn btn-primary">
+					Upload<input type="file" style="display: none;" name="images[]" multiple>
+				</label>
+			</form>
+			<button type="button" class="btn btn-primary edit" url="/setup/<%= apt.apt_id %>" idx="<%= i %>">Edit</button>
+			<button type="button" class="btn btn-danger" data="/setup/delete/<%= apt.apt_id %>">Delete</button>
+		</td>
+	</tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>
+	<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+	      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form action="/setup" method="post">
+    	    <div class="mb-3 mt-3">
+			      <label for="apt_id">ID:</label>
+			      <input type="text" class="form-control" id="apt_id" placeholder="Enter Apartment ID" name="apt_id">
+			    </div>
+			    <div class="mb-3 mt-3">
+			      <label for="price">Price:</label>
+			      <input type="number" class="form-control" id="price" placeholder="" name="price">
+			    </div>
+			    <div class="mb-3 mt-3">
+			      <label for="location">location:</label>
+			      <input type="text" class="form-control" id="location" placeholder="" name="location">
+			    </div>
+			    <div class="mb-3 mt-3">
+			      <label for="bedrooms">bedrooms:</label>
+			      <input type="number" class="form-control" id="bedrooms" placeholder="" name="bedrooms">
+			    </div>
+			    <div class="mb-3 mt-3">
+			      <label for="description">Description:</label>
+			      <textarea class="form-control" rows="5" id="description" name="description"></textarea>
+			    </div>
+			    <div class="text-right">
+				    <button type="submit" class="btn btn-primary">Submit</button>
+				    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+			    </div>
+			  </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript">
+	var apts = <%= apts.to_json.html_safe %>
+	$("input:file").change(function (){
+    var fileName = $(this).val();
+    if(fileName != "") {
+    	$(this).parent().parent().submit();
+    } 
+  });
+  $("button.btn-danger").click(function() {
+	  if (confirm("Press a button!") == true) {
+	    window.location.href = $(this).attr('data');
+	  }
+  });
+  $("button.edit").click(function() {
+  	url = $(this).attr('url');
+  	idx = $(this).attr('idx');
+  	$("#myModal form").attr("action", url);
+  	$("#myModal #apt_id ").attr("disabled", 1);
+  	$("#myModal #apt_id").val(apts[idx]['apt_id']);
+  	$("#myModal #price").val(apts[idx]['price']);
+  	$("#myModal #location").val(apts[idx]['location']);
+  	$("#myModal #bedrooms").val(apts[idx]['bedrooms']);
+  	$("#myModal #description").val(apts[idx]['description']);
+  	$('#myModal').modal('show');
+  });
+</script>
+</html>
+

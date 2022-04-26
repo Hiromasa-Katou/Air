@@ -1,8 +1,6 @@
-require 'date'
 require 'sinatra'
 require 'sinatra/cookies'
 require 'mongoid'
-require 'PDFKit'
 require "grover"
 
 apartments = {
@@ -29,6 +27,17 @@ apartments = {
   }
 }
 
+class Apartment
+  include Mongoid::Document
+  field :apt_id, type: String
+  field :price, type: Integer
+  field :title, type: String
+  field :location, type: String
+  field :bedrooms, type: Integer
+  field :description, type: String
+end
+
+
 class Guest
   include Mongoid::Document
   field :client_id, type: String, default: -> { SecureRandom.hex 4 }
@@ -49,23 +58,83 @@ end
 Mongoid.load!('mongo.yml')
 
 get '/' do
-  redirect 'https://www.airbnb.com/'
+  redirect 'https://www.airbnb.nl'
+end
+
+get '/setup' do
+  apts = Apartment.all
+  erb :setup, locals: {apts: apts}
+end
+
+post '/setup' do
+  apt_id = params[:apt_id].downcase.to_sym
+  path = "public/images/#{apt_id}"
+  Dir.mkdir(path) unless File.exists?(path)
+
+  Apartment.create(
+    apt_id: apt_id,
+    price: params['price'],
+    title: params['title'],
+    location: params['location'],
+    bedrooms: params['bedrooms'],
+    description: params['description']
+  )
+  redirect '/setup'
+end
+
+post '/setup/:apt_id' do
+  apt_id = params[:apt_id].downcase.to_sym
+  apt = Apartment.where(apt_id: apt_id).first
+  apt.set(
+    price: params['price'],
+    title: params['title'],
+    location: params['location'],
+    bedrooms: params['bedrooms'],
+    description: params['description']
+  )
+  redirect '/setup'
+end
+
+get '/setup/delete/:apt_id' do
+  apt_id = params[:apt_id].downcase.to_sym
+  Apartment.where(apt_id: apt_id).delete
+  FileUtils.remove_dir("public/images/#{apt_id}",true)
+  redirect '/setup'
+end
+
+post '/setup/upload/:apt_id' do
+  apt_id = params[:apt_id].downcase.to_sym
+  path = "public/images/#{apt_id}"
+
+  k = params['images'].map{ |f| f[:filename] }.join(";")
+  $param = k.chomp.split(";")
+  array_length = $param.length       # or $param.size
+  array_lengthx = array_length
+
+  i = 0
+  while i.to_i < array_lengthx do
+    fname = params[:images][i][:filename]
+    file = params[:images][i][:tempfile]
+    File.open("#{path}/#{fname}", 'wb') do |f|
+      f.write file.read
+    end
+    i += 1
+  end
+  redirect '/setup'
 end
 
 get '/apartments/:apartment_id' do
-  # puts apartments.keys.inspect
   apt_id = params[:apartment_id].downcase.to_sym
+  apt = Apartment.where(apt_id: apt_id).first
+  halt 404 unless apt
   if !cookies['client_id']
     client = Guest.create
     cookies['client_id'] = client.client_id
   end
-  return 404 unless apartments.keys.include? apt_id
-  erb :air_step1, locals:{apt_id: apt_id.to_s, apt: apartments[apt_id], booked: ( cookies['client_id'] && Guest.where(client_id: cookies['client_id']).first.first_name)}
+  erb :air_step1, locals:{apt_id: apt_id.to_s, apt: apt, booked: ( cookies['client_id'] && Guest.where(client_id: cookies['client_id']).first.first_name)}
 end
 
 post '/update_guest' do
-  # puts params
-  # puts cookies['client_id']
   client = Guest.where(client_id: cookies['client_id']).first
   halt 404 unless client
   halt 400 unless params['maanden'].to_i > 0
@@ -87,9 +156,10 @@ end
 
 get '/confirm' do
   client = Guest.where(client_id: cookies['client_id']).first
+  apt = Apartment.where(apt_id: client.selected_property).first
   halt 404 unless client && client.checkin_timestamp
   checkin_timestamp = Time.at(client.checkin_timestamp)
-  erb :air_step2, locals: {months: client.number_of_months, checkin: checkin_timestamp, apt_id: client.selected_property, apt: apartments[client.selected_property.to_sym], client: client}
+  erb :air_step2, locals: {months: client.number_of_months, checkin: checkin_timestamp, apt_id: client.selected_property, apt: apt, client: client}
 end
 
 post '/confirm' do
@@ -109,8 +179,9 @@ end
 
 get '/invoice' do
   client = Guest.where(client_id: cookies['client_id']).first
+  apt = Apartment.where(apt_id: client.selected_property).first
   halt 404 unless client
-  erb :air_step3, locals: {client: client, apt: apartments[client.selected_property.to_sym]}
+  erb :air_step3, locals: {client: client, apt: apt}
 end
 
 post '/upload' do
@@ -127,9 +198,9 @@ end
 
 get '/invoice_file' do
   client = Guest.where(client_id: cookies['client_id']).first
+  apt = Apartment.where(apt_id: client.selected_property).first
   halt 404 unless client
-  # erb(:invoice, locals: {client: client, apt: apartments[client.selected_property.to_sym]})
-  source = erb(:invoice, locals: {client: client, apt: apartments[client.selected_property.to_sym]})
+  source = erb(:invoice, locals: {client: client, apt: apt})
   Grover.configure do |config|
     config.options = {
       format: 'A4',
