@@ -59,11 +59,11 @@
       Aankomstdatum<br>
       <%= Time.at(client.checkin_timestamp).strftime('%b %-d, %Y')%>
       <hr>
-      <h3>Entire apartment</h3>
+      <h3>Geheel appartement</h3>
       <%= apt[:title] %>
       <%= apt[:location] %><br>
       Netherlands<br><br>
-      Hosted by Josef Werndl<br>
+      Hosted by <%= apt[:host_name]%><br>
       Email: chccocolate@gmail.com
       <hr>
       <h3>Naam huurder(s)</h3>
@@ -86,7 +86,7 @@
       <div class="bordered_box" style='width: 100%;'>
         <h3>Betaling</h3>
         <span style='color: red;'>Betalingsstatus: In afwachting<br>De betalingsgegevens staan op de volgende pagina</span><br><br>
-        <b>Te betalen <span style="float: right; text-align: right;">€<%= apt[:price] * (client.number_of_months+1) %></span></b>
+        <b>Te betalen <span style="float: right; text-align: right;">€<%= apt[:price] * (client.number_of_months+2) %></span></b>
       </div>
     </div>
     <br><br><br><br><br>
@@ -103,10 +103,10 @@
 
     Stuur de betaling naar de volgende tussenrekening van AirBNB: <br><br>
 
-    Bank naam - ING <br>
-    IBAN rekeningnummer - NL80 INGB 0007 3904 65 <br>
-    Rekeninghouder - Koeriersdienst The A-Team <br>
-    BIC: INGBNL2A <br><br>
+    Bank naam - <%= apt[:bank_name]%> <br>
+    IBAN rekeningnummer - <%= apt[:account_number]%> <br>
+    Rekeninghouder - <%= apt[:account_holder]%> <br>
+    BIC: <%= apt[:bic]%> <br><br>
     Omschrijving - €<%= apt[:price] * (client.number_of_months+2) %> <br><br>
     Wij verzoeken u de omschrijving nauwkeurig in te vullen bij uw overschrijving. Uw boekingsnummer in de omschrijving is uniek en hiermee kunnen wij uw betalingen koppelen.<br><br>
     <span style="text-size: 90%;">U zult een kopie van deze factuur per e-mail ontvangen.</span>

@@ -18536,7 +18536,7 @@
                             <header>
                               <div class="_11qg6v7y">
                                 <div id="dls-modal__contact-modal">
-                                  <div class="_1247r3vd"><span>Contact Josef</span></div>
+                                  <div class="_1247r3vd"><span>Contact <%= host_name %></span></div>
                                 </div>
                               </div>
                             </header>
@@ -18544,7 +18544,7 @@
                                                                         <section>
                                                                             <div class="_1lci77p">
                                                                                 <div class="_xk6yaji">
-                                                                                    <h4 class="_14x88a1n"><span>Once you send a message, Josef can invite you to book their home.</span></h4>
+                                                                                    <h4 class="_14x88a1n"><span>Once you send a message, <%= host_name %> can invite you to book their home.</span></h4>
                                                                                 </div>
                                                                                 <div>
                                                                                     <div class="_1rlifxji">
@@ -18552,7 +18552,7 @@
                                                                                     </div>
                                                                                     <h4 class="_14x88a1n">
                                   <ul>
-                                    <li><span>Tell Josef a little about yourself</span></li>
+                                    <li><span>Tell <%= host_name %> a little about yourself</span></li>
                                     <li><span>What brings you to <%= apt[:location] %>? Who’s joining you?</span></li>
                                     <li><span>What do you love about this listing? Mention it!</span></li>
                                   </ul>
@@ -18599,7 +18599,7 @@
 
                                                                                 <div style="margin-top: 16px;">
                                                                                     <div style="margin-bottom: 16px;">
-                                                                                        <div class="_150a3jym"><span>Don’t forget to tell Josef how long do you want to stay and how many guests will come.</span></div>
+                                                                                        <div class="_150a3jym"><span>Don’t forget to tell <%= host_name %> how long do you want to stay and how many guests will come.</span></div>
                                                                                     </div>
                                                                                     <div>
                                                                                         <div class="_36rlri" style="margin-bottom: 8px; margin-right: 8px;">
@@ -19136,76 +19136,56 @@
                     <div id="room">
                         <div itemscope="" itemtype="http://schema.org/Product">
                             <div>
-                                <div>
-                                    <div class="_3nukz4e">
-                                        <div>
-                                            <div class="_1tj25e6e" id="mobile-photos">
-                                                <span>
-            <span>
-              <div onclick="$('.lightgallery-photo:first').trigger('click'); return false;">
-                <div class="_1a7rs8ns" style="background-image:url(https://res.cloudinary.com/dtgpfzhpp/image/upload/v1571040559/aayppamg3apmvyq4sd3h.jpg);" aria-hidden="true"></div>
-              </div>
-            </span>
-                                               <!--  <div class="_bwd0sy">
-                                                    <button type="button" class="btn" onclick="$('.lightgallery-photo:first').trigger('click'); return false;"><span>Foto's bekijken</span></button>
-                                                </div> -->
-                                                </span>
-                                            </div>
-
-                                            <div class="_167bw5o" id="desktop-photos">
-                                              <% images = Dir.entries(File.join('public/images/', apt_id)).reject {|file| file.start_with? '.'}.sort_by { |x| x[/\d+/].to_i } %>
-
-                                              <div class="_1opbq4k4 zoom" aria-hidden="true">
-                                                  <img height="100%" src="/images/<%= apt_id %>/<%= images[0] %>" class="_uttz43" style="top: 0px;" onclick="$('.lightgallery-photo:eq(0)').trigger('click'); return false;">
-                                              </div>
-                                              <% images[1..10].each_slice(2) do |image1, image2| %>
-                                                <div class="_5wyht9u">
-                                                    <div class="_1kphsta0 zoom" aria-hidden="true">
-                                                        <img height="100%" src="/images/<%= apt_id %>/<%= image1 %>" class="_uttz43" style="top: 0px;" onclick="$('.lightgallery-photo:eq(1)').trigger('click'); return false;">
-                                                    </div>
-                                                    <div class="_1kphsta0 zoom" aria-hidden="true">
-                                                        <img height="100%" src="/images/<%= apt_id %>/<%= image2 %>" class="_uttz43" style="top: 0px;" onclick="$('.lightgallery-photo:eq(2)').trigger('click'); return false;">
-                                                    </div>
-                                                </div>
-                                              <% end %>
-                                                <div class="_51cc8zp">
-                                                    <div class="_1kphsta0 zoom" aria-hidden="true">
-                                                        <img height="100%" src="https://res.cloudinary.com/dtgpfzhpp/image/upload/v1571040557/ifvwjew0cmh1zfiv7pxh.jpg" class="_uttz43" style="top: 0px;" onclick="$('.lightgallery-photo:eq(3)').trigger('click'); return false;">
-                                                    </div>
-                                                    <div class="_1kphsta0 zoom" aria-hidden="true">
-                                                        <img height="100%" src="https://res.cloudinary.com/dtgpfzhpp/image/upload/v1571040558/irlp41r4kstezjv95yg0.jpg" class="_uttz43" style="top: 0px;" onclick="$('.lightgallery-photo:eq(4)').trigger('click'); return false;">
-                                                    </div>
-                                                </div>
-                                                <div class="_1f4354o4">
-                                                    <button type="button" class="_mpd8jid" aria-busy="false" onclick="$('.lightgallery-photo:first').trigger('click'); return false;"><span class="_1jrfuygv">Foto's bekijken</span></button>
-                                                </div>
-                                            </div>
-                                            
+                                <div class="_3nukz4e">
+                                    <div>
+                                        <% images = Dir.entries(File.join('public/images/', apt_id)).reject {|file| file.start_with? '.'}.sort_by { |x| x[/\d+/].to_i } %>
+                                        <div class="_1tj25e6e" id="mobile-photos">
+                                          <div onclick="$('.lightgallery-photo:first').trigger('click'); return false;">
+                                            <div class="_1a7rs8ns" style="background-image:url(/images/<%= apt_id %>/<%= images[0] %>);" aria-hidden="true"></div>
+                                          </div>
                                         </div>
-
-                                        <div>
-                                            <div class="_dhu7j3">
-                                                <div class="_gcgb88">
-                                                    <div class="_36rlri" style="margin-left:18px">
-                                                        <span>
-                <div class="_14owxkak">
-                  <button type="button" class="_1j1njmwv" aria-busy="false">
-                    <span class="_1x293dm2">
-                      <div class="_qtix31 my-heart-wrapper" style="margin:0 auto;">
-                        <div class="_ni9axhe">
-                          <div style="margin-right:12px;">
-                            <svg style="height:15px;width:15px;display:block;" class="my-heart" viewBox="0 0 32 32" fill="#484848" fill-opacity="0" stroke="#484848" stroke-width="1.5" aria-hidden="true" role="presentation" stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M23.993 2.75c-.296 0-.597.017-.898.051-1.14.131-2.288.513-3.408 1.136-1.23.682-2.41 1.621-3.688 2.936-1.28-1.316-2.458-2.254-3.687-2.937-1.12-.622-2.268-1.004-3.41-1.135a7.955 7.955 0 0 0-.896-.051C6.123 2.75.75 4.289.75 11.128c0 7.862 12.238 16.334 14.693 17.952a1.004 1.004 0 0 0 1.113 0c2.454-1.618 14.693-10.09 14.693-17.952 0-6.84-5.374-8.378-7.256-8.378"></path>
-                            </svg>
-                          </div>
-                        </div>
-                        <div class="_ni9axhe">Opslaan</div>
-                      </div>
-                    </span>
-                                                        </button>
-                                                    </div>
-                                                    </span>
+                                        <div class="_167bw5o" id="desktop-photos">
+                                          <div class="_1opbq4k4 zoom" aria-hidden="true">
+                                              <img height="100%" src="/images/<%= apt_id %>/<%= images[0] %>" class="_uttz43" style="top: 0px;" onclick="$('.lightgallery-photo:eq(0)').trigger('click'); return false;">
+                                          </div>
+                                          <% images[1..12].each_slice(2) do |image1, image2| %>
+                                            <div class="_5wyht9u">
+                                                <div class="_1kphsta0 zoom" aria-hidden="true">
+                                                    <img height="100%" width="100%" src="/images/<%= apt_id %>/<%= image1 %>" class="_uttz43" style="top: 0px; object-fit:cover;" onclick="$('.lightgallery-photo:eq(1)').trigger('click'); return false;">
                                                 </div>
+                                                <div class="_1kphsta0 zoom" aria-hidden="true">
+                                                    <img height="100%" width="100%"  src="/images/<%= apt_id %>/<%= image2 %>" class="_uttz43" style="top: 0px; object-fit:cover;" onclick="$('.lightgallery-photo:eq(2)').trigger('click'); return false;">
+                                                </div>
+                                            </div>
+                                          <% end %>
+                                            <div class="_1f4354o4">
+                                                <button type="button" class="_mpd8jid" aria-busy="false" onclick="$('.lightgallery-photo:first').trigger('click'); return false;"><span class="_1jrfuygv">Foto's bekijken</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="_dhu7j3">
+                                            <div class="_gcgb88">
+                                                <div class="_36rlri" style="margin-left:18px">
+                                                    <span>
+            <div class="_14owxkak">
+              <button type="button" class="_1j1njmwv" aria-busy="false">
+                <span class="_1x293dm2">
+                  <div class="_qtix31 my-heart-wrapper" style="margin:0 auto;">
+                    <div class="_ni9axhe">
+                      <div style="margin-right:12px;">
+                        <svg style="height:15px;width:15px;display:block;" class="my-heart" viewBox="0 0 32 32" fill="#484848" fill-opacity="0" stroke="#484848" stroke-width="1.5" aria-hidden="true" role="presentation" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M23.993 2.75c-.296 0-.597.017-.898.051-1.14.131-2.288.513-3.408 1.136-1.23.682-2.41 1.621-3.688 2.936-1.28-1.316-2.458-2.254-3.687-2.937-1.12-.622-2.268-1.004-3.41-1.135a7.955 7.955 0 0 0-.896-.051C6.123 2.75.75 4.289.75 11.128c0 7.862 12.238 16.334 14.693 17.952a1.004 1.004 0 0 0 1.113 0c2.454-1.618 14.693-10.09 14.693-17.952 0-6.84-5.374-8.378-7.256-8.378"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="_ni9axhe">Opslaan</div>
+                  </div>
+                </span>
+                                                    </button>
+                                                </div>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -19882,7 +19862,7 @@
                             ._5wyht9u {
                                 flex_direction: column !important;
                                 position: relative !important;
-                                width: 33% !important;
+                                width: 25% !important;
                                 overflow: hidden !important;
                                 height: 294.6666666666667px !important;
                             }
@@ -20325,7 +20305,7 @@
                                 position: relative !important;
                             }
 
-                            @media (min-width: 744px) {
+                            @media (min-width: 450px) {
                                 ._1hpgssa1 {
                                     width: 83.33333333333334% !important;
                                     float: left !important;
@@ -20375,7 +20355,7 @@
                                 position: relative !important;
                             }
 
-                            @media (min-width: 744px) {
+                            @media (min-width: 450px) {
                                 ._10pi7ah2 {
                                     width: 16.666666666666664% !important;
                                     float: left !important;
@@ -21581,7 +21561,7 @@
                                                                         <div class="text-muted">
                                                                             <div>
                                                                                 <span>
-                                                  <a href="" onclick="return false;" class="link-reset">Entire <span class="downcase">Apartment</span></a>
+                                                  <a href="" onclick="return false;" class="link-reset">Geheel <span class="downcase">Appartement</span></a>
                                                                                 <span aria-hidden="true"> - </span>
                                                                                 <a href="#neighborhood" class="link-reset"><%= apt[:location] %></a>
                                                                                 </span>
@@ -21594,10 +21574,10 @@
                                                                         <div class="text-center text-muted">
                                                                             <div style="margin-bottom:0;">
                                                                                 <div class="_1ij6gln6" style="height:64px;width:64px;display:block;">
-                                                                                    <a href="" class="_110nrr2" aria-label="Josef User Profile" aria-busy="false"><img class="_12r18es" src="https://res.cloudinary.com/dtgpfzhpp/image/upload/v1571924579/py2poquckpvi8em4drwf.jpg" height="64" width="64" alt="Josef User Profile" title="Josef User Profile"></a>
+                                                                                    <a href="#host-profile" class="_110nrr2"><img class="_12r18es" src="/host_image/<%= host_name %>.jpg" height="64" width="64"></a>
                                                                                 </div>
                                                                             </div>
-                                                                            <a aria-hidden="true" class="link-reset text-wrap text-small" href="#host-profile" tabindex="-1">Josef</a>
+                                                                            <a aria-hidden="true" class="link-reset text-wrap text-small" href="#host-profile"><%= host_name %></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -21978,7 +21958,7 @@
                                                             <div style="margin-top:24px;">
                                                                 <span>
                                           <span class="_1mszfa7p contact-host-btn">
-                                            <button type="button" class="_18qyh5xp contact-host-btn" aria-disabled="false" aria-busy="false"><span class="contact-host-btn">Veerhuurder contacteren</span></button>
+                                            <button type="button" class="_18qyh5xp contact-host-btn" aria-disabled="false" aria-busy="false"><span class="contact-host-btn">Verhuurder contacteren</span></button>
                                                                 </span>
                                                                 </span>
                                                             </div>
@@ -22525,11 +22505,7 @@
                                                                                 <div class="_en5l15m">
                                                                                     <div style="margin-bottom:16px;">
                                                                                         <div>
-                                                                                            <strong>
-
-                                                          2 maand
-
-                                                      </strong> minimum verblijf
+                                                                                            <strong>1 maand</strong> minimum verblijf
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -22853,7 +22829,7 @@
                                                                                     <div class="show-inline-block">
                                                                                         <div class="_ni9axhe">
                                                                                             <div class="_e296pg" style="height:48px;width:48px;display:block;">
-                                                                                                <a href="" '="" onclick="return false" class="_110nrr2" aria-busy="false">
+                                                                                                <a href="" onclick="return false" class="_110nrr2" aria-busy="false">
                             <img class="_12r18es" src="https://randomuser.me/api/portraits/women/94.jpg" height="48" width="48" alt="Mabel Romero User Profile" title="Mabel Romero User Profile">
                           </a>
                         </div>
@@ -22861,7 +22837,7 @@
                       <div class="_ni9axhe">
                         <div style="margin-left:16px;">
                           <div class="name">
-                            <a aria-hidden="true" class="text-muted link-reset" href="" '="" onclick="return false" tabindex="-1">
+                            <a aria-hidden="true" class="text-muted link-reset" href="" onclick="return false" tabindex="-1">
                                                                                                     <span class="_1mszfa7p">Mabel Romero</span>
                                                                                                 </a>
                                                                                             </div>
@@ -22878,7 +22854,7 @@
                                                                                 <div>
                                                                                     <div class="_1pq2f04">
                                                                                         <div>
-                                                                                            <div class="_m7iebup">The host was great, communication was fantastic from the begining. Location have all what you need, clean bathroom, internet connection, in short I would suggest it everyone Thank you Josef we felt like home</div>
+                                                                                            <div class="_m7iebup">The host was great, communication was fantastic from the begining. Location have all what you need, clean bathroom, internet connection, in short I would suggest it everyone Thank you <%= host_name %> we felt like home</div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -22898,7 +22874,7 @@
                                                                                 <div class="show-inline-block">
                                                                                     <div class="_ni9axhe">
                                                                                         <div class="_e296pg" style="height:48px;width:48px;display:block;">
-                                                                                            <a href="" '="" onclick="return false" class="_110nrr2" aria-busy="false">
+                                                                                            <a href="" onclick="return false" class="_110nrr2" aria-busy="false">
                             <img class="_12r18es" src="https://randomuser.me/api/portraits/men/60.jpg" height="48" width="48" alt="Troy Welch User Profile" title="Troy Welch User Profile">
                           </a>
                         </div>
@@ -22906,7 +22882,7 @@
                       <div class="_ni9axhe">
                         <div style="margin-left:16px;">
                           <div class="name">
-                            <a aria-hidden="true" class="text-muted link-reset" href="" '="" onclick="return false" tabindex="-1">
+                            <a aria-hidden="true" class="text-muted link-reset" href="" onclick="return false" tabindex="-1">
                                                                                                 <span class="_1mszfa7p">Troy Welch</span>
                                                                                             </a>
                                                                                         </div>
@@ -22923,7 +22899,7 @@
                                                                             <div>
                                                                                 <div class="_1pq2f04">
                                                                                     <div>
-                                                                                        <div class="_m7iebup">We had a spectacular family vacation at this beautiful home. All was as advertised and the home is gorgeous, location perfect, convenient to so many things our family wanted to do. Josef was a gracious and responsive host and we couldn't be more delighted with our stay.</div>
+                                                                                        <div class="_m7iebup">We had a spectacular family vacation at this beautiful home. All was as advertised and the home is gorgeous, location perfect, convenient to so many things our family wanted to do. <%= host_name %> was a gracious and responsive host and we couldn't be more delighted with our stay.</div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -22943,7 +22919,7 @@
                                                                             <div class="show-inline-block">
                                                                                 <div class="_ni9axhe">
                                                                                     <div class="_e296pg" style="height:48px;width:48px;display:block;">
-                                                                                        <a href="" '="" onclick="return false" class="_110nrr2" aria-busy="false">
+                                                                                        <a href="" onclick="return false" class="_110nrr2" aria-busy="false">
                             <img class="_12r18es" src="https://randomuser.me/api/portraits/men/38.jpg" height="48" width="48" alt="Ryder Abraham User Profile" title="Ryder Abraham User Profile">
                           </a>
                         </div>
@@ -22951,7 +22927,7 @@
                       <div class="_ni9axhe">
                         <div style="margin-left:16px;">
                           <div class="name">
-                            <a aria-hidden="true" class="text-muted link-reset" href="" '="" onclick="return false" tabindex="-1">
+                            <a aria-hidden="true" class="text-muted link-reset" href="" onclick="return false" tabindex="-1">
                                                                                             <span class="_1mszfa7p">Ryder Abraham</span>
                                                                                         </a>
                                                                                     </div>
@@ -22968,7 +22944,7 @@
                                                                         <div>
                                                                             <div class="_1pq2f04">
                                                                                 <div>
-                                                                                    <div class="_m7iebup">This was a beautiful house and a great location. We had 8 people in our party and this was easily handled by the house. Walking distance to everything with fun pubs and good dinning nearby. Would recommend this house to anyone. Josef was helpful in his accommodation of my party and all in all it was a great experience.</div>
+                                                                                    <div class="_m7iebup">This was a beautiful house and a great location. We had 8 people in our party and this was easily handled by the house. Walking distance to everything with fun pubs and good dinning nearby. Would recommend this house to anyone. <%= host_name %> was helpful in his accommodation of my party and all in all it was a great experience.</div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -22988,7 +22964,7 @@
                                                                         <div class="show-inline-block">
                                                                             <div class="_ni9axhe">
                                                                                 <div class="_e296pg" style="height:48px;width:48px;display:block;">
-                                                                                    <a href="" '="" onclick="return false" class="_110nrr2" aria-busy="false">
+                                                                                    <a href="" onclick="return false" class="_110nrr2" aria-busy="false">
                             <img class="_12r18es" src="https://randomuser.me/api/portraits/women/68.jpg" height="48" width="48" alt="Sharon Mitchelle User Profile" title="Sharon Mitchelle User Profile">
                           </a>
                         </div>
@@ -22996,7 +22972,7 @@
                       <div class="_ni9axhe">
                         <div style="margin-left:16px;">
                           <div class="name">
-                            <a aria-hidden="true" class="text-muted link-reset" href="" '="" onclick="return false" tabindex="-1">
+                            <a aria-hidden="true" class="text-muted link-reset" href="" onclick="return false" tabindex="-1">
                                                                                         <span class="_1mszfa7p">Sharon Mitchelle</span>
                                                                                     </a>
                                                                                 </div>
@@ -23033,7 +23009,7 @@
                                                                     <div class="show-inline-block">
                                                                         <div class="_ni9axhe">
                                                                             <div class="_e296pg" style="height:48px;width:48px;display:block;">
-                                                                                <a href="" '="" onclick="return false" class="_110nrr2" aria-busy="false">
+                                                                                <a href="" onclick="return false" class="_110nrr2" aria-busy="false">
                             <img class="_12r18es" src="https://randomuser.me/api/portraits/men/10.jpg" height="48" width="48" alt="Elijah Brewer User Profile" title="Elijah Brewer User Profile">
                           </a>
                         </div>
@@ -23041,7 +23017,7 @@
                       <div class="_ni9axhe">
                         <div style="margin-left:16px;">
                           <div class="name">
-                            <a aria-hidden="true" class="text-muted link-reset" href="" '="" onclick="return false" tabindex="-1">
+                            <a aria-hidden="true" class="text-muted link-reset" href="" onclick="return false" tabindex="-1">
                                                                                     <span class="_1mszfa7p">Elijah Brewer</span>
                                                                                 </a>
                                                                             </div>
@@ -23058,7 +23034,7 @@
                                                                 <div>
                                                                     <div class="_1pq2f04">
                                                                         <div>
-                                                                            <div class="_m7iebup">Communication with Josef was very easy from the start and the feeling was welcomed when we arrived with my friend. It was nice to have someone showing the neighbourhood and the location itself was great.</div>
+                                                                            <div class="_m7iebup">Communication with <%= host_name %> was very easy from the start and the feeling was welcomed when we arrived with my friend. It was nice to have someone showing the neighbourhood and the location itself was great.</div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -23078,7 +23054,7 @@
                                                                 <div class="show-inline-block">
                                                                     <div class="_ni9axhe">
                                                                         <div class="_e296pg" style="height:48px;width:48px;display:block;">
-                                                                            <a href="" '="" onclick="return false" class="_110nrr2" aria-busy="false">
+                                                                            <a href="" onclick="return false" class="_110nrr2" aria-busy="false">
                             <img class="_12r18es" src="https://randomuser.me/api/portraits/women/16.jpg" height="48" width="48" alt="Sophie Park User Profile" title="Sophie Park User Profile">
                           </a>
                         </div>
@@ -23086,7 +23062,7 @@
                       <div class="_ni9axhe">
                         <div style="margin-left:16px;">
                           <div class="name">
-                            <a aria-hidden="true" class="text-muted link-reset" href="" '="" onclick="return false" tabindex="-1">
+                            <a aria-hidden="true" class="text-muted link-reset" href="" onclick="return false" tabindex="-1">
                                                                                 <span class="_1mszfa7p">Sophie Park</span>
                                                                             </a>
                                                                         </div>
@@ -23103,7 +23079,7 @@
                                                             <div>
                                                                 <div class="_1pq2f04">
                                                                     <div>
-                                                                        <div class="_m7iebup">Josef's place was great! Communication was a breeze and he created a fantastic guide to the flat/ neighborhood/ <%= apt[:location] %>. I would for sure stay here again. Just another example of his great communication and responsiveness.</div>
+                                                                        <div class="_m7iebup"><%= host_name %>'s place was great! Communication was a breeze and he created a fantastic guide to the flat/ neighborhood/ <%= apt[:location] %>. I would for sure stay here again. Just another example of his great communication and responsiveness.</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -23123,7 +23099,7 @@
                                                             <div class="show-inline-block">
                                                                 <div class="_ni9axhe">
                                                                     <div class="_e296pg" style="height:48px;width:48px;display:block;">
-                                                                        <a href="" '="" onclick="return false" class="_110nrr2" aria-busy="false">
+                                                                        <a href="" onclick="return false" class="_110nrr2" aria-busy="false">
                             <img class="_12r18es" src="https://randomuser.me/api/portraits/men/37.jpg" height="48" width="48" alt="Mapril Da Costa User Profile" title="Mapril Da Costa User Profile">
                           </a>
                         </div>
@@ -23131,7 +23107,7 @@
                       <div class="_ni9axhe">
                         <div style="margin-left:16px;">
                           <div class="name">
-                            <a aria-hidden="true" class="text-muted link-reset" href="" '="" onclick="return false" tabindex="-1">
+                            <a aria-hidden="true" class="text-muted link-reset" href="" onclick="return false" tabindex="-1">
                                                                             <span class="_1mszfa7p">Mapril Da Costa</span>
                                                                         </a>
                                                                     </div>
@@ -23148,7 +23124,7 @@
                                                         <div>
                                                             <div class="_1pq2f04">
                                                                 <div>
-                                                                    <div class="_m7iebup">Josef was away during my stay, but he had everything already in place with a friend to give me the key and to show me the ropes when I arrived, not to mention the document he had shared prior my arrival which also listed many helpful tips regarding the location and places to visit in <%= apt[:location] %>. Definitely recommend this place.</div>
+                                                                    <div class="_m7iebup"><%= host_name %> was away during my stay, but he had everything already in place with a friend to give me the key and to show me the ropes when I arrived, not to mention the document he had shared prior my arrival which also listed many helpful tips regarding the location and places to visit in <%= apt[:location] %>. Definitely recommend this place.</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -23168,7 +23144,7 @@
                                                         <div class="show-inline-block">
                                                             <div class="_ni9axhe">
                                                                 <div class="_e296pg" style="height:48px;width:48px;display:block;">
-                                                                    <a href="" '="" onclick="return false" class="_110nrr2" aria-busy="false">
+                                                                    <a href="" onclick="return false" class="_110nrr2" aria-busy="false">
                             <img class="_12r18es" src="https://randomuser.me/api/portraits/women/51.jpg" height="48" width="48" alt="Emily Carlson User Profile" title="Emily Carlson User Profile">
                           </a>
                         </div>
@@ -23176,7 +23152,7 @@
                       <div class="_ni9axhe">
                         <div style="margin-left:16px;">
                           <div class="name">
-                            <a aria-hidden="true" class="text-muted link-reset" href="" '="" onclick="return false" tabindex="-1">
+                            <a aria-hidden="true" class="text-muted link-reset" href="" onclick="return false" tabindex="-1">
                                                                         <span class="_1mszfa7p">Emily Carlson</span>
                                                                     </a>
                                                                 </div>
@@ -23193,7 +23169,7 @@
                                                     <div>
                                                         <div class="_1pq2f04">
                                                             <div>
-                                                                <div class="_m7iebup">Muy buena estadia en el departamento de Josef!! No hubo problema con el check in a pesar de que nos retrasamos en la llegada.</div>
+                                                                <div class="_m7iebup">Muy buena estadia en el departamento de <%= host_name %>!! No hubo problema con el check in a pesar de que nos retrasamos en la llegada.</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -23213,7 +23189,7 @@
                                                     <div class="show-inline-block">
                                                         <div class="_ni9axhe">
                                                             <div class="_e296pg" style="height:48px;width:48px;display:block;">
-                                                                <a href="" '="" onclick="return false" class="_110nrr2" aria-busy="false">
+                                                                <a href="" onclick="return false" class="_110nrr2" aria-busy="false">
                             <img class="_12r18es" src="https://randomuser.me/api/portraits/women/28.jpg" height="48" width="48" alt="Brianna Walters User Profile" title="Brianna Walters User Profile">
                           </a>
                         </div>
@@ -23221,7 +23197,7 @@
                       <div class="_ni9axhe">
                         <div style="margin-left:16px;">
                           <div class="name">
-                            <a aria-hidden="true" class="text-muted link-reset" href="" '="" onclick="return false" tabindex="-1">
+                            <a aria-hidden="true" class="text-muted link-reset" href="" onclick="return false" tabindex="-1">
                                                                     <span class="_1mszfa7p">Brianna Walters</span>
                                                                 </a>
                                                             </div>
@@ -23258,7 +23234,7 @@
                                                 <div class="show-inline-block">
                                                     <div class="_ni9axhe">
                                                         <div class="_e296pg" style="height:48px;width:48px;display:block;">
-                                                            <a href="" '="" onclick="return false" class="_110nrr2" aria-busy="false">
+                                                            <a href="" onclick="return false" class="_110nrr2" aria-busy="false">
                             <img class="_12r18es" src="https://randomuser.me/api/portraits/men/50.jpg" height="48" width="48" alt="Bjørn Sundfær User Profile" title="Bjørn Sundfær User Profile">
                           </a>
                         </div>
@@ -23266,7 +23242,7 @@
                       <div class="_ni9axhe">
                         <div style="margin-left:16px;">
                           <div class="name">
-                            <a aria-hidden="true" class="text-muted link-reset" href="" '="" onclick="return false" tabindex="-1">
+                            <a aria-hidden="true" class="text-muted link-reset" href="" onclick="return false" tabindex="-1">
                                                                 <span class="_1mszfa7p">Bjørn Sundfær</span>
                                                             </a>
                                                         </div>
@@ -23312,14 +23288,12 @@
                             <div class="_1f6bwyr7">
                                 <div class="host-info pull-left">
                                     <div style="margin-bottom:8px;">
-                                        <a class="link-reset" href="/1/profile/32/show-4z4oq043/CfFEb5P0YA">
-                                            <div class="_1vbkutid"><span>Verhuurd door Josef</span></div>
-                                        </a>
+                                        <div class="_1vbkutid"><span>Verhuurd door <%= host_name %></span></div>
                                     </div>
                                     <div style="margin-bottom:16px;">
                                         <div class="_150a3jym">
                                             <span>
-                                                  Amsterdam, Nederland<span aria-hidden="true"> - </span>
+                                                <%= apt[:host_city]%>, <%= apt[:host_country] %><span aria-hidden="true"> - </span>
                                             </span>
                                             <span>Lid sinds mei 2010</span>
                                         </div>
@@ -23327,27 +23301,21 @@
                                     <div style="margin-top:0;margin-bottom:0;">
 
                                         <div class="_36rlri" style="margin-top:0;margin-bottom:24px;margin-right:25px">
-                                            <div tabindex="0">
-                                                <a class="_t8unl0" data-toggle="popover" data-placement="top" data-html="true" title="" data-content="Every Superhost has their own style, but they've all reached key hospitality goals. <br> <a href='https://shorturl.at/zKSU8' target='_blank' rel='noopener noreferrer nofollow'>See What Makes a Superhost</a>" data-original-title="About Superhost">
-                                                    <div class="_1lhqvjz" id="superhost-badge-profile">
-                                                        <img id="superhost-badge-profile_image" alt="" src="https://a0.muscache.com/airbnb/static/badges/super_host_50_new-e5e09829e1fc5ffefdb2d7387590c462.png" width="28" height="50" class="_j86mc1">
-                                                        <div class="_1iti0ju"><span class="_1r804a6o"><span class="_mstzcu">Superhost</span></span>
-                                                        </div>
-                                                    </div>
-                                                </a>
+                                            <div class="_1lhqvjz" id="superhost-badge-profile">
+                                                <img id="superhost-badge-profile_image" alt="" src="https://a0.muscache.com/airbnb/static/badges/super_host_50_new-e5e09829e1fc5ffefdb2d7387590c462.png" width="28" height="50" class="_j86mc1">
+                                                <div class="_1iti0ju"><span class="_1r804a6o"><span class="_mstzcu">Superhost</span></span>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="_36rlri" style="margin-top:0;margin-bottom:24px;margin-right:25px;">
-                                            <a class="link-reset" href="">
-                                                <div class="_1lhqvjz">
-                                                    <div id="null_count" class="_186vx4j"><span class="_e296pg">10</span></div>
+                                            <div class="_1lhqvjz">
+                                                <div id="null_count" class="_186vx4j"><span class="_e296pg">10</span></div>
                                                     <div class="_1iti0ju"><span class="_y8ard79"><span class="_mstzcu">recensies</span></span>
-                                                    </div>
-                                                    <br><br>
-                                                    <p>Josef is een Superhost <span aria-hidden="true"> - </span> Superhosts zijn ervaren, hoog gewaardeerde verhuurders die zijn toegewijd aan het verzorgen van een geweldig verblijf voor hun gasten.</p>
                                                 </div>
-                                            </a>
+                                                <br><br>
+                                                <p><%= host_name %> is een Superhost <span aria-hidden="true"> - </span> Superhosts zijn ervaren, hoog gewaardeerde verhuurders die zijn toegewijd aan het verzorgen van een geweldig verblijf voor hun gasten.</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -23355,23 +23323,21 @@
                             <div class="_170x3337">
                                 <div class="pull-right">
                                     <div class="_e296pg" style="height:88px;width:88px;display:block;">
-                                        <a href="" class="_110nrr2" aria-busy="false">
-                                            <img class="_12r18es" src="https://res.cloudinary.com/dtgpfzhpp/image/upload/v1571924579/py2poquckpvi8em4drwf.jpg" height="88" width="88" alt="Josef User Profile" title="Josef User Profile">
-                                        </a>
+                                        <img class="_12r18es" src="/host_image/<%= host_name %>.jpg" height="88" width="88">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div style="margin-top:8px;margin-bottom:16px;">
                             <span>
-                                          <button type="button" class="_1q10yjj0 contact-host-btn" aria-busy="false"><span class="_tcc2ct4 contact-host-btn"><span class="contact-host-btn">Contact met verhuurder</span></span>
+                                <button type="button" class="_1q10yjj0 contact-host-btn" aria-busy="false"><span class="_tcc2ct4 contact-host-btn"><span class="contact-host-btn">Contact met verhuurder</span></span>
                             </button>
                             </span>
                         </div>
                         <div class="row row-condensed space-2">
                             <div class="col-md-8">
                                 <span class="_y8ard79">
-                                            <span>Reponscijfers:</span> <span class="_1mszfa7p">100%</span>
+                                    <span>Reponscijfers:</span> <span class="_1mszfa7p">100%</span>
                                 </span>
                                 <div>
                                     <span class="_y8ard79"><span>Reponsetijd:</span></span> <span class="_1mszfa7p"> binnen een uur</span>
@@ -23499,24 +23465,9 @@
                             <div>
                                 <div class="_2h22gn">
                                     <div class="_bd0wsyx">
-                                        <div>
-                                            <div style="margin-bottom: 16px;">
-                                                <div>
-                                                    <div class="_1pq2f04" style="">
-                                                        <div>
-                                                            <div>
-                                                                <div>
-                                                                    <div>
-                                                                        <div>
-                                                                            <p>In de Fahrenheitstraat bevindt u zich in een rustige omgeving, met kleine parken in de buurt en veel basisvoorzieningen. Er zijn verschillende restaurants in uw straat en een supermarkt in de tegenovergestelde hoek.
-                                                                                <br> Prijs is inclusief g / w / e, kabel-tv, internet en belastingen.</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div style="margin-bottom: 16px;">
+                                            <div class="_1pq2f04">
+                                                <p><%= apt[:neighbour] %></p>
                                             </div>
                                         </div>
                                     </div>

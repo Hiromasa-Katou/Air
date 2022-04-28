@@ -1,7 +1,10 @@
-require 'sinatra'
+﻿require 'sinatra'
 require 'sinatra/cookies'
 require 'mongoid'
 require "grover"
+
+set :port, 80
+set :bind, '0.0.0.0'
 
 apartments = {
   denhaag1: {
@@ -35,6 +38,16 @@ class Apartment
   field :location, type: String
   field :bedrooms, type: Integer
   field :description, type: String
+  field :neighbour, type: String
+  field :host_name, type: String
+  field :host_street, type: String
+  field :host_city, type: String
+  field :host_country, type: String
+  field :bank_name, type: String
+  field :account_holder, type: String
+  field :account_number, type: String
+  field :bic, type: String
+
 end
 
 
@@ -70,14 +83,22 @@ post '/setup' do
   apt_id = params[:apt_id].downcase.to_sym
   path = "public/images/#{apt_id}"
   Dir.mkdir(path) unless File.exists?(path)
-
   Apartment.create(
     apt_id: apt_id,
     price: params['price'],
     title: params['title'],
     location: params['location'],
     bedrooms: params['bedrooms'],
-    description: params['description']
+    description: params['description'],
+    neighbour: params['neighbour'],
+    host_name: params['host_name'],
+    host_street: params['host_street'],
+    host_city: params['host_city'],
+    host_country: params['host_country'],
+    bank_name: params['bank_name'],
+    account_holder: params['account_holder'],
+    account_number: params['account_number'],
+    bic: params['bic']
   )
   redirect '/setup'
 end
@@ -90,7 +111,16 @@ post '/setup/:apt_id' do
     title: params['title'],
     location: params['location'],
     bedrooms: params['bedrooms'],
-    description: params['description']
+    description: params['description'],
+    neighbour: params['neighbour'],
+    host_name: params['host_name'],
+    host_street: params['host_street'],
+    host_city: params['host_city'],
+    host_country: params['host_country'],
+    bank_name: params['bank_name'],
+    account_holder: params['account_holder'],
+    account_number: params['account_number'],
+    bic: params['bic']
   )
   redirect '/setup'
 end
@@ -131,7 +161,10 @@ get '/apartments/:apartment_id' do
     client = Guest.create
     cookies['client_id'] = client.client_id
   end
-  erb :air_step1, locals:{apt_id: apt_id.to_s, apt: apt, booked: ( cookies['client_id'] && Guest.where(client_id: cookies['client_id']).first.first_name)}
+  apt[:description] = apt[:description].gsub("\n", "<br/>") unless apt[:description].nil?;
+  apt[:neighbour] = apt[:neighbour].gsub("\n", "<br/>") unless apt[:neighbour].nil?;
+  host_name = apt[:host_name].split(' ').first;
+  erb :air_step1, locals:{apt_id: apt_id.to_s, host_name: host_name, apt: apt, booked: ( cookies['client_id'] && Guest.where(client_id: cookies['client_id']).first.first_name)}
 end
 
 post '/update_guest' do

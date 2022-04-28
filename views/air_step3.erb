@@ -21031,7 +21031,14 @@
                                             <div class="_33hj8bi invoice-left-titles">
                                                 <div>Host details
                                                 </div>
-                                            </div><span class="_150a3jym">Josef Werndl<br />Fahrenheitstraat<br />Den Haag<br />Netherlands</span></div>
+                                            </div>
+                                                <span class="_150a3jym">
+                                                    <%= apt[:host_name] %><br />
+                                                    <%= apt[:host_street] %><br />
+                                                    <%= apt[:host_city] %><br />
+                                                    <%= apt[:host_country] %>
+                                                </span>
+                                            </div>
                                     </div>
                                     <div class="row invoice-left-boxes">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -21069,11 +21076,14 @@
                                             </div>
                                             <p><span class="_150a3jym">Om uw boeking te bevestigen dient u het totale bedrag over te maken naar de tussenrekening van Airbnb. Na ontvangst van uw betaling is de boeking bevestigd. Airbnb geeft de betaling aan de verhuurder pas vrij nadat u als huurder heeft bevestigd dat alles conform de verhuurafspraken is nagekomen door de verhuurder (host).</span></p>
                                             <p><span class="_150a3jym">Stuur de betaling naar de volgende tussenrekening van AirBNB:</span></p>
-                                            <p><span class="_150a3jym">Bank naam – ING<br />Rekeninghouder – Koeriersdienst The A-Team<br /><span class="caps">IBAN rekeningnummer</span> – NL80 INGB 0007 3904 65</span>
+                                            <p><span class="_150a3jym">
+                                                Bank naam – <%= apt[:bank_name] %><br />
+                                                Rekeninghouder – <%= apt[:account_holder]%><br />
+                                                <span class="caps">IBAN rekeningnummer</span> – <%= apt[:account_number]%></span>
                                             </p>
-                                            <p><span class="caps">BIC</span>:   INGBNL2A
+                                            <p><span class="caps">BIC</span>: <%= apt[:bic]%>
                                             </p>
-                                            <p>Omschrijving – €<%= apt[:price] * client.number_of_months%>
+                                            <p>Bedrag – €<%= apt[:price] * (client.number_of_months + 2)%>
                                             </p>
                                             <p>Gebruik als betalingsreferentie uw reserveringscode: <%=client.client_id%>.
                                             </p>
@@ -21117,7 +21127,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="_150a3jym"><span>Entire <span class="downcase">Apartment</span> in <%= apt[:location] %></span>
+                                                                        <div class="_150a3jym"><span>Geheel <span class="downcase">appartement</span> in <%= apt[:location] %></span>
                                                                         </div>
                                                                         <div style="margin-top:4px;"></div>
                                                                     </div>

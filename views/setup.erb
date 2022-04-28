@@ -14,7 +14,7 @@
 <body>
 <div class="container mt-3">
 	<div class="text-right">
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+		<button type="button" id="add_new" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
 	    Add new
 	  </button>
 	</div>
@@ -38,7 +38,7 @@
 		<td><%= apt.price %></td>
 		<td><%= apt.location %></td>
 		<td><%= apt.bedrooms %></td>
-		<td><%= apt.description %></td>
+		<td><%= apt.description[0..300] %> .....</td>
 		<td>
 			<form action="/setup/upload/<%= apt.apt_id %>" method="post" enctype="multipart/form-data">
 				<label class="btn btn-primary">
@@ -46,7 +46,7 @@
 				</label>
 			</form>
 			<button type="button" class="btn btn-primary edit" url="/setup/<%= apt.apt_id %>" idx="<%= i %>">Edit</button>
-			<button type="button" class="btn btn-danger" data="/setup/delete/<%= apt.apt_id %>">Delete</button>
+			<button type="button" class="btn btn-danger delete" data="/setup/delete/<%= apt.apt_id %>">Delete</button>
 		</td>
 	</tr>
       <%end%>
@@ -59,37 +59,80 @@
     <div class="modal-content">
 
 	      <!-- Modal Header -->
-      <div class="modal-header">
+<!--       <div class="modal-header">
         <h4 class="modal-title">Modal Heading</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
+      </div> -->
 
       <!-- Modal body -->
       <div class="modal-body">
         <form action="/setup" method="post">
-    	    <div class="mb-3 mt-3">
-			      <label for="apt_id">ID:</label>
-			      <input type="text" class="form-control" id="apt_id" placeholder="Enter Apartment ID" name="apt_id">
+        	<div class="row">
+        		<div class="col">
+			      	<input type="text" class="form-control" id="apt_id" placeholder="Enter Apartment ID" name="apt_id">
+        		</div>
+        		<div class="col">
+				      <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title">
+        		</div>
+				    <div class="col">
+				      <input type="number" class="form-control" id="price" placeholder="price" name="price">
+				    </div>
+        	</div>
+        	<div class="row mt-3">
+				    <div class="col">
+				      <input type="text" class="form-control" id="location" placeholder="Location" name="location">
+				    </div>
+				    <div class="col">
+				      <input type="number" class="form-control" id="bedrooms" placeholder="bedrooms" name="bedrooms" value="2">
+				    </div>
+        	</div>
+			    <div class="mt-3">
+			      <label >Host Details:</label>
 			    </div>
-			    <div class="mb-3 mt-3">
-			      <label for="price">Price:</label>
-			      <input type="number" class="form-control" id="price" placeholder="" name="price">
+			    <div class="row">
+				    <div class="col">
+				      <input type="text" class="form-control" id="host_name" placeholder="Name" name="host_name" value="Josef Werndl">
+				    </div>
+				    <div class="col">
+				      <input type="text" class="form-control" id="host_street" placeholder="Street" name="host_street" value="Fahrenheitstraat">
+				    </div>
+				    <div class="col">
+				      <input type="text" class="form-control" id="host_city" placeholder="City" name="host_city" value="Den Haag">
+				    </div>
+				    <div class="col">
+				      <input type="text" class="form-control" id="host_country" placeholder="Country" name="host_country" value="Netherlands">
+				    </div>
 			    </div>
-			    <div class="mb-3 mt-3">
-			      <label for="location">location:</label>
-			      <input type="text" class="form-control" id="location" placeholder="" name="location">
+			    <div class="mt-3">
+			      <label >Bank Info:</label>
 			    </div>
-			    <div class="mb-3 mt-3">
-			      <label for="bedrooms">bedrooms:</label>
-			      <input type="number" class="form-control" id="bedrooms" placeholder="" name="bedrooms">
+			    <div class="row">
+				    <div class="col">
+				      <input type="text" class="form-control" id="bank_name" placeholder="Name" name="bank_name" value="ING">
+				    </div>
+				    <div class="col">
+				      <input type="text" class="form-control" id="account_holder" placeholder="Holder" name="account_holder" value="Koeriersdienst The A-Team">
+				    </div>
+				    <div class="col">
+				      <input type="text" class="form-control" id="account_number" placeholder="Number" name="account_number" value="NL80 INGB 0007 3904 65">
+				    </div>
+				    <div class="col">
+				      <input type="text" class="form-control" id="bic" placeholder="BIC" name="bic" value="INGBNL2A">
+				    </div>
 			    </div>
-			    <div class="mb-3 mt-3">
-			      <label for="description">Description:</label>
-			      <textarea class="form-control" rows="5" id="description" name="description"></textarea>
+			    <div class="mt-3">
+			      <textarea class="form-control" rows="3" id="neighbour" name="neighbour" placeholder="Neighbour">
+In de Fahrenheitstraat bevindt u zich in een rustige omgeving, met kleine parken in de buurt en veel basisvoorzieningen. Er zijn verschillende restaurants in uw straat en een supermarkt in de tegenovergestelde hoek.
+Prijs is inclusief g / w / e, kabel-tv, internet en belastingen.</textarea>
 			    </div>
-			    <div class="text-right">
-				    <button type="submit" class="btn btn-primary">Submit</button>
-				    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+			    <div class="mt-3">
+			      <textarea class="form-control" rows="5" id="description" name="description" placeholder="Description"></textarea>
+			    </div>
+			    <div class="mt-3">
+				    <div class="text-right">
+					    <button type="submit" class="btn btn-primary">Submit</button>
+					    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+				    </div>
 			    </div>
 			  </form>
       </div>
@@ -105,10 +148,14 @@
     	$(this).parent().parent().submit();
     } 
   });
-  $("button.btn-danger").click(function() {
+  $("button.delete").click(function() {
 	  if (confirm("Press a button!") == true) {
 	    window.location.href = $(this).attr('data');
 	  }
+  });
+  $("button#add_new").click(function(){
+  	$("#myModal #apt_id ").removeAttr("disabled");
+  	$("#myModal #apt_id ").val("");
   });
   $("button.edit").click(function() {
   	url = $(this).attr('url');
@@ -116,10 +163,20 @@
   	$("#myModal form").attr("action", url);
   	$("#myModal #apt_id ").attr("disabled", 1);
   	$("#myModal #apt_id").val(apts[idx]['apt_id']);
+  	$("#myModal #title").val(apts[idx]['title']);
   	$("#myModal #price").val(apts[idx]['price']);
   	$("#myModal #location").val(apts[idx]['location']);
   	$("#myModal #bedrooms").val(apts[idx]['bedrooms']);
   	$("#myModal #description").val(apts[idx]['description']);
+  	$("#myModal #host_name").val(apts[idx]['host_name']);
+  	$("#myModal #host_city").val(apts[idx]['host_city']);
+  	$("#myModal #host_street").val(apts[idx]['host_street']);
+  	$("#myModal #host_country").val(apts[idx]['host_country']);
+  	$("#myModal #bank_name").val(apts[idx]['bank_name']);
+  	$("#myModal #account_holder").val(apts[idx]['account_holder']);
+  	$("#myModal #account_number").val(apts[idx]['account_number']);
+  	$("#myModal #bic").val(apts[idx]['bic']);
+  	$("#myModal #neighbour").val(apts[idx]['neighbour']);
   	$('#myModal').modal('show');
   });
 </script>
