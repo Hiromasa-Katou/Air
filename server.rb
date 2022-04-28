@@ -5,6 +5,7 @@ require "grover"
 
 set :port, 80
 set :bind, '0.0.0.0'
+set :environment, :production
 
 apartments = {
   denhaag1: {
@@ -43,11 +44,11 @@ class Apartment
   field :host_street, type: String
   field :host_city, type: String
   field :host_country, type: String
+  field :host_img, type: String, default: -> {"default.png"}
   field :bank_name, type: String
   field :account_holder, type: String
   field :account_number, type: String
   field :bic, type: String
-
 end
 
 
@@ -66,7 +67,10 @@ class Guest
   field :zip , type: String
   field :country , type: String
   field :phone , type: String
+  field :status , type: Boolean, default: -> {false}
+  field :upload_time , type: Integer, default: -> {Time.new}
 end
+
 
 Mongoid.load!('mongo.yml')
 
@@ -77,6 +81,11 @@ end
 get '/setup' do
   apts = Apartment.all
   erb :setup, locals: {apts: apts}
+end
+
+get '/client' do
+  data = Guest.where(status: true)
+  erb :client, locals: {clients: data}
 end
 
 post '/setup' do
@@ -153,6 +162,18 @@ post '/setup/upload/:apt_id' do
   redirect '/setup'
 end
 
+post '/setup/host/:apt_id' do
+  apt_id = params[:apt_id].downcase.to_sym
+  apt = Apartment.where(apt_id: apt_id).first
+  tempfile = params['host_img'][:tempfile] 
+  filename = params['host_img'][:filename]
+  File.open("public/host_image/#{filename}", "wb") do |f|
+    f.write(tempfile.read)
+  end
+  apt.set(host_img: filename)
+  redirect '/setup'
+end
+
 get '/apartments/:apartment_id' do
   apt_id = params[:apartment_id].downcase.to_sym
   apt = Apartment.where(apt_id: apt_id).first
@@ -163,7 +184,7 @@ get '/apartments/:apartment_id' do
   end
   apt[:description] = apt[:description].gsub("\n", "<br/>") unless apt[:description].nil?;
   apt[:neighbour] = apt[:neighbour].gsub("\n", "<br/>") unless apt[:neighbour].nil?;
-  host_name = apt[:host_name].split(' ').first;
+  host_name = apt[:host_name].split(' ').first unless apt[:neighbour].nil?;
   erb :air_step1, locals:{apt_id: apt_id.to_s, host_name: host_name, apt: apt, booked: ( cookies['client_id'] && Guest.where(client_id: cookies['client_id']).first.first_name)}
 end
 
@@ -223,9 +244,11 @@ post '/upload' do
   filename = params['fileToUpload'][:filename]
   directory_name = "uploads/#{client.invoice_id}"
   Dir.mkdir(directory_name) unless File.exists?(directory_name)
-  File.open("#{directory_name}/#{filename}", "w") do |f|
+  File.open("#{directory_name}/#{filename}", "wb") do |f|
     f.write(tempfile.read)
   end
+  client.set(status: true);
+  client.set(upload_time: Time.new);
   redirect("apartments/#{client.selected_property}")
 end
 

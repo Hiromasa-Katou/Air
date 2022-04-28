@@ -19148,7 +19148,7 @@
                                           <div class="_1opbq4k4 zoom" aria-hidden="true">
                                               <img height="100%" src="/images/<%= apt_id %>/<%= images[0] %>" class="_uttz43" style="top: 0px;" onclick="$('.lightgallery-photo:eq(0)').trigger('click'); return false;">
                                           </div>
-                                          <% images[1..12].each_slice(2) do |image1, image2| %>
+                                          <% images[1..10].each_slice(2) do |image1, image2| %>
                                             <div class="_5wyht9u">
                                                 <div class="_1kphsta0 zoom" aria-hidden="true">
                                                     <img height="100%" width="100%" src="/images/<%= apt_id %>/<%= image1 %>" class="_uttz43" style="top: 0px; object-fit:cover;" onclick="$('.lightgallery-photo:eq(1)').trigger('click'); return false;">
@@ -21542,7 +21542,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div data-reactid="222" class="_1hbsadf"></div>
                                                         <div data-reactid="223" class="_ifnnxc"></div>
                                                     </div>
                                                 </div>
@@ -21574,7 +21573,7 @@
                                                                         <div class="text-center text-muted">
                                                                             <div style="margin-bottom:0;">
                                                                                 <div class="_1ij6gln6" style="height:64px;width:64px;display:block;">
-                                                                                    <a href="#host-profile" class="_110nrr2"><img class="_12r18es" src="/host_image/<%= host_name %>.jpg" height="64" width="64"></a>
+                                                                                    <a href="#host-profile" class="_110nrr2"><img class="_12r18es" src="/host_image/<%= apt[:host_img] %>" height="64" width="64"></a>
                                                                                 </div>
                                                                             </div>
                                                                             <a aria-hidden="true" class="link-reset text-wrap text-small" href="#host-profile"><%= host_name %></a>
@@ -21627,6 +21626,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        <hr/>
                                         </div>
 
                                         <div class="_1av41w02" id="desktop-booking">
@@ -21707,29 +21707,29 @@
                                                                                             <div class="_29hm34m">
                                                                                                 <div class="_y9ev9r">
                                                                                                     <select id="maanden" name="maanden" class="_4nlkxxs" required="true" style="font-size: 16px !important; font-weight: 400 !important;">
-                                                                                                        <option class="notranslate" value="1" selected>1 maanden</option>
+                                                                                                        <option class="notranslate" value="1" selected>1 maand</option>
 
-                                                                                                        <option class="notranslate" value="2">2 maanden</option>
+                                                                                                        <option class="notranslate" value="2">2 maand</option>
 
-                                                                                                        <option class="notranslate" value="3">3 maanden</option>
+                                                                                                        <option class="notranslate" value="3">3 maand</option>
 
-                                                                                                        <option class="notranslate" value="4">4 maanden</option>
+                                                                                                        <option class="notranslate" value="4">4 maand</option>
 
-                                                                                                        <option class="notranslate" value="5">5 maanden</option>
+                                                                                                        <option class="notranslate" value="5">5 maand</option>
 
-                                                                                                        <option class="notranslate" value="6">6 maanden</option>
+                                                                                                        <option class="notranslate" value="6">6 maand</option>
 
-                                                                                                        <option class="notranslate" value="7">7 maanden</option>
+                                                                                                        <option class="notranslate" value="7">7 maand</option>
 
-                                                                                                        <option class="notranslate" value="8">8 maanden</option>
+                                                                                                        <option class="notranslate" value="8">8 maand</option>
 
-                                                                                                        <option class="notranslate" value="9">9 maanden</option>
+                                                                                                        <option class="notranslate" value="9">9 maand</option>
 
-                                                                                                        <option class="notranslate" value="10">10 maanden</option>
+                                                                                                        <option class="notranslate" value="10">10 maand</option>
 
-                                                                                                        <option class="notranslate" value="11">11 maanden</option>
+                                                                                                        <option class="notranslate" value="11">11 maand</option>
 
-                                                                                                        <option class="notranslate" value="12">12 maanden</option>
+                                                                                                        <option class="notranslate" value="12">12 maand</option>
 
                                                                                                     </select>
                                                                                                 </div>
@@ -22297,50 +22297,49 @@
                                                                                             <div class="_iq8x9is">
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Baby bath</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Baby bad</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Baby monitor</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Babyfoon</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Babysitter recommendations</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Aanbevelingen voor oppas</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Bathtub</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Badkuip</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Changing table</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Commode</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Children’s books and toys</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Kinderboeken en speelgoed</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Children’s dinnerware</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Kinderservies</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Crib</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Wieg</del></div>
                                                                                                 </div>
 
                                                                                             </div>
                                                                                             <div class="_iq8x9is">
-
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Fireplace guards</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Open haard bewakers</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Game console</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Spelcomputer</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">High chair</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Hoge stoel</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
@@ -22348,23 +22347,23 @@
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Pack ’n Play/travel crib</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Pack ’n Play/reiswieg</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Room-darkening shades</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Kamerverduisterende tinten</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Stair gates</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Traphekjes</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Table corner guards</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Tafelhoekbeschermers</del></div>
                                                                                                 </div>
 
                                                                                                 <div style="margin-bottom: 16px;">
-                                                                                                    <div class="text-muted"><del aria-hidden="true">Window guards</del></div>
+                                                                                                    <div class="text-muted"><del aria-hidden="true">Raambeschermers</del></div>
                                                                                                 </div>
 
                                                                                             </div>
@@ -22374,7 +22373,7 @@
                                                                             </div>
 
                                                                             <div class="_ug6tr25">
-                                                                                <button type="button" class="_18qyh5xp" aria-disabled="false" aria-busy="false" onclick="$('.hidden-amenity').show(); $(this).parent().hide(); return false;"><span>+ More</span></button>
+                                                                                <button type="button" class="_18qyh5xp" aria-disabled="false" aria-busy="false" onclick="$('.hidden-amenity').show(); $(this).parent().hide(); return false;"><span>+ Meer</span></button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -23323,7 +23322,7 @@
                             <div class="_170x3337">
                                 <div class="pull-right">
                                     <div class="_e296pg" style="height:88px;width:88px;display:block;">
-                                        <img class="_12r18es" src="/host_image/<%= host_name %>.jpg" height="88" width="88">
+                                        <img class="_12r18es" src="/host_image/<%= apt[:host_img] %>" height="88" width="88">
                                     </div>
                                 </div>
                             </div>
