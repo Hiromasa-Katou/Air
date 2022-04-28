@@ -2,6 +2,7 @@
 require 'sinatra/cookies'
 require 'mongoid'
 require "grover"
+require 'zip'
 
 set :port, 80
 set :bind, '0.0.0.0'
@@ -270,4 +271,17 @@ get '/invoice_file' do
   end
   Grover.new(source).to_pdf("./invoices/#{client.invoice_id}.pdf")
   send_file "./invoices/#{client.invoice_id}.pdf"
+end
+
+get '/get_payments/:id' do
+  zipfile_name = "uploads/#{params[:id]}.zip"
+  File.delete(zipfile_name) if File.exists?(zipfile_name) #delete previous version
+  Zip::File.open(zipfile_name, create: true) do |zipfile|
+    Dir["uploads/#{params[:id]}/*"].each do |file|
+        zipfile.add(File.basename(file), file)
+    end
+    zipfile.get_output_stream("myFile") { |f| f.write "myFile contains just this" }
+  end
+  send_file zipfile_name
+  redirect("/client")
 end

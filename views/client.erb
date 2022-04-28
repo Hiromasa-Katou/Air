@@ -12,46 +12,48 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-<div class="container mt-3">
+<div class="container-fluid">
 	<div class="mt-3">
 		<a href="/setup">Setup Panel</a>
 		<span width="50px"></span>
 		<a href="/client">Client Panel</a>
 	</div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>Phone</th>
-        <th>Selected</th>
-        <th>Checkin Time</th>
-        <th>Months</th>
-        <th>Guests</th>
-        <th>Upload Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% clients.each  do |client|%>
-		<tr>
-			<td><%= client.invoice_id %></td>
-			<td><%= client.first_name%> <%= client.last_name%></td>
-			<td><%= client.address %></td>
-			<td><%= client.city %></td>
-			<td><%= client.country %></td>
-			<td><%= client.phone %></td>
-			<td><%= client.selected_property %></td>
-			<td><%= Time.at(client.checkin_timestamp).strftime('%b %-d, %Y') %></td>
-			<td><%= client.number_of_months %></td>
-			<td><%= client.number_of_guests %></td>
-			<td><%= Time.at(client.upload_time).inspect %></td>
-		</tr>
-      <%end%>
-    </tbody>
-  </table>
+	<div class="mt-3">
+	  <table class="table">
+	    <thead>
+	      <tr>
+	        <th>ID</th>
+	        <th>Name</th>
+	        <th>Address</th>
+	        <th>City</th>
+	        <th>Country</th>
+	        <th>Phone</th>
+	        <th>Selected</th>
+	        <th>Checkin Time</th>
+	        <th>Months</th>
+	        <th>Guests</th>
+	        <th>Upload Time</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <% clients.each  do |client|%>
+			<tr>
+				<td><a href="/get_payments/<%= client.invoice_id %>"><%= client.invoice_id %></a></td>
+				<td><%= client.first_name%> <%= client.last_name%></td>
+				<td><%= client.address %></td>
+				<td><%= client.city %></td>
+				<td><%= client.country %></td>
+				<td><%= client.phone %></td>
+				<td><%= client.selected_property %></td>
+				<td><%= Time.at(client.checkin_timestamp).strftime('%b %-d, %Y') %></td>
+				<td><%= client.number_of_months %></td>
+				<td><%= client.number_of_guests %></td>
+				<td><%= Time.at(client.upload_time).inspect %></td>
+			</tr>
+	      <%end%>
+	    </tbody>
+	  </table>
+  </div>
 </div>
 </body>
 <script type="text/javascript">
