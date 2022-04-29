@@ -18544,17 +18544,18 @@
                                                                         <section>
                                                                             <div class="_1lci77p">
                                                                                 <div class="_xk6yaji">
-                                                                                    <h4 class="_14x88a1n"><span>Once you send a message, <%= host_name %> can invite you to book their home.</span></h4>
+                                                                                    <h4 class="_14x88a1n"><span>
+                                                                                        Zodra u een bericht heeft verzonden, kan <%= host_name %> u uitnodigen om het huis te boeken.</span></h4>
                                                                                 </div>
                                                                                 <div>
                                                                                     <div class="_1rlifxji">
-                                                                                        <h4 class="_14x88a1n"><span>Make sure you share the following:</span></h4>
+                                                                                        <h4 class="_14x88a1n"><span>Zorg ervoor dat u het volgende deelt:</span></h4>
                                                                                     </div>
                                                                                     <h4 class="_14x88a1n">
                                   <ul>
-                                    <li><span>Tell <%= host_name %> a little about yourself</span></li>
-                                    <li><span>What brings you to <%= apt[:location] %>? Who’s joining you?</span></li>
-                                    <li><span>What do you love about this listing? Mention it!</span></li>
+                                    <li><span>Vertel <%= host_name %> over jezelf</span></li>
+                                    <li><span>Waarom wilt u naar <%= apt[:location] %> verhuizen? Waaruit bestaat uw huishouden?</span></li>
+                                    <li><span>Wat vindt u van deze accommodatie? Vermeld het allemaal!</span></li>
                                   </ul>
                                 </h4>
                                                                                 </div>
@@ -23283,46 +23284,53 @@
             <div>
                 <div id="host-profile">
                     <div>
-                        <div class="_2h22gn">
-                            <div class="_1f6bwyr7">
-                                <div class="host-info pull-left">
+                        <div class="_2h22gn" style="margin-bottom: 10px;">
+
+                            <div style="float: left;">
+<!--                                 <div class="pull-right"> -->
+                                    <div class="_e296pg" style="height:80;width:80px;display:block;">
+                                        <img class="_12r18es" src="/host_image/<%= apt[:host_img] %>" height="80" width="80">
+                                    </div>
+<!--                                 </div> -->
+                            </div>
+                            <div style="float: left; margin-top: 14px; margin-left: 12px;">
+<!--                                 <div class="host-info pull-left"> -->
                                     <div style="margin-bottom:8px;">
                                         <div class="_1vbkutid"><span>Verhuurd door <%= host_name %></span></div>
                                     </div>
-                                    <div style="margin-bottom:16px;">
-                                        <div class="_150a3jym">
-                                            <span>
-                                                <%= apt[:host_city]%>, <%= apt[:host_country] %><span aria-hidden="true"> - </span>
-                                            </span>
-                                            <span>Lid sinds mei 2010</span>
+
+                                    <div>
+                                        <div style="margin-bottom:16px;">
+                                            <div class="_150a3jym">
+                                                <span>
+                                                    <%= apt[:host_city]%>, <%= apt[:host_country] %><span aria-hidden="true"> - </span>
+                                                </span>
+                                                <span>Lid sinds mei 2010</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div style="margin-top:0;margin-bottom:0;">
-
-                                        <div class="_36rlri" style="margin-top:0;margin-bottom:24px;margin-right:25px">
-                                            <div class="_1lhqvjz" id="superhost-badge-profile">
-                                                <img id="superhost-badge-profile_image" alt="" src="https://a0.muscache.com/airbnb/static/badges/super_host_50_new-e5e09829e1fc5ffefdb2d7387590c462.png" width="28" height="50" class="_j86mc1">
-                                                <div class="_1iti0ju"><span class="_1r804a6o"><span class="_mstzcu">Superhost</span></span>
-                                                </div>
-                                            </div>
+<!--                                 </div> -->
+                            </div>
+                        </div>
+                        <div>
+                            <div style="margin-top:0;margin-bottom:0;">
+                                <div class="_36rlri" style="margin-left: 10px; margin-bottom: 15px;">
+                                    <div class="_1lhqvjz" style="display:inline-block;">
+                                        <img id="superhost-badge-profile_image" alt="" src="https://a0.muscache.com/airbnb/static/badges/super_host_50_new-e5e09829e1fc5ffefdb2d7387590c462.png" width="28" height="50" class="_j86mc1">
+                                        <div class="_1iti0ju">
+                                            <span class="_1r804a6o"><span class="_mstzcu">Superhost</span></span>
                                         </div>
-
-                                        <div class="_36rlri" style="margin-top:0;margin-bottom:24px;margin-right:25px;">
-                                            <div class="_1lhqvjz">
-                                                <div id="null_count" class="_186vx4j"><span class="_e296pg">10</span></div>
-                                                    <div class="_1iti0ju"><span class="_y8ard79"><span class="_mstzcu">recensies</span></span>
-                                                </div>
-                                                <br><br>
-                                                <p><%= host_name %> is een Superhost <span aria-hidden="true"> - </span> Superhosts zijn ervaren, hoog gewaardeerde verhuurders die zijn toegewijd aan het verzorgen van een geweldig verblijf voor hun gasten.</p>
-                                            </div>
+                                    </div>
+                                    <div style="display: inline-block; margin-left: 20px;">
+                                        <div class="_186vx4j"><span class="_e296pg">10</span></div>
+                                            <div class="_1iti0ju"><span class="_y8ard79"><span class="_mstzcu">recensies</span></span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="_170x3337">
-                                <div class="pull-right">
-                                    <div class="_e296pg" style="height:88px;width:88px;display:block;">
-                                        <img class="_12r18es" src="/host_image/<%= apt[:host_img] %>" height="88" width="88">
+
+                                <div class="_36rlri" style="margin-top:0;margin-bottom:18px;margin-right:25px;">
+                                    <div class="_1lhqvjz">
+                                        <p><%= host_name %> is een Superhost <span aria-hidden="true"> - </span> Superhosts zijn ervaren, hoog gewaardeerde verhuurders die zijn toegewijd aan het verzorgen van een geweldig verblijf voor hun gasten.</p>
                                     </div>
                                 </div>
                             </div>
@@ -23347,6 +23355,7 @@
                 </div>
             </div>
         </div>
+        <hr>
     </div>
     </div>
 
@@ -23446,7 +23455,7 @@
 
     <div id="js-book-it-bottom-waypoint"></div>
 
-    <div style="margin-top:40px;">
+    <div style="margin-top:10px;">
         <div>
             <div>
                 <div id="neighborhood">

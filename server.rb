@@ -1,36 +1,33 @@
 ﻿require 'sinatra'
 require 'sinatra/cookies'
+require 'thin'
 require 'mongoid'
-require "grover"
-require 'zip'
+require 'grover'
 
-set :port, 80
-set :bind, '0.0.0.0'
-set :environment, :production
+class MyThinBackend < ::Thin::Backends::TcpServer
+  def initialize(host, port, options)
+    super(host, port)
+    @ssl = true
+    @ssl_options = options
+  end
+end
 
-apartments = {
-  denhaag1: {
-    price: 1325,
-    title: 'Den Haag: Archipel appartement',
-    location: 'Den Haag',
-    bedrooms: 2,
-    description: 'Dit appartement met twee ruime slaapkamers is in goede staat en biedt veel ruimte en charme. Het ligt om de hoek van alle internationale organisaties, verschillende ambassades en Shell. De winkelstraat "Bankastraat" is op loopafstand en biedt veel leuke boetiekjes, restaurants en lunchrooms. Openbaar vervoer en de snelwegen zijn tevens op dichtbij en biedt hierdoor gemakkelijke toegang tot het stadscentrum, het strand van Scheveningen en alle uitvalswegen richting Rotterdam en Amsterdam.Indeling: eigen entree op begane grond, trap naar de eerste verdieping van het appartement. Vanuit de gang komt u in de ruime en lichte woonkamer met eetkamer aan de achterzijde. De gehele eerste etage is voorzien van een mooie houten vloer. De moderne, separaat gesitueerde keuken is voorzien van alle inbouwapparatuur zoals een oven, vriezer en vaatwasser. Er is een apart gastentoilet met wastafel in de gang.Trap naar de tweede verdieping. Ruime overloop met de cv-installatie in knieschot weggewerkt met schuifdeuren. Beide charmante slaapkamers zijn toegankelijk via de hal en zijn uitgerust met ingebouwde kasten. Tussen beide slaapkamers bevindt zich de nette en zeer grote badkamer die is uitgerust met een douche, bad, toilet en wastafel. Zeer ruim en charmant appartement, ideaal voor mensen die dicht bij hun werk en het centrum van de stad willen wonen.'
-  },
-  rotterdam1: {
-    price: 1790,
-    title: 'Luxe gemeubileerd 4-kamer appartement',
-    bedrooms: 3,
-    location: 'Rotterdam',
-    description: 'TE HUUR: Een zeer luxe gemeubileerd 4-kamerappartement op de 12de verdieping met parkeerplaats nummer 182 (gratis) en inpandig terras, welke een spectaculair uitzicht biedt op het Boerengat, de Maas en sky-line van Rotterdam. Zeer gunstig gelegen ten overstaan van openbaar vervoer (metro, tram en trein) en uitvalswegen. Winkels, diverse restaurants en uitgaansgelegenheden in de nabije omgeving. Alle voorzieningen van Kralingen en het centrum op ongeveer 10 minuten loopafstand.'
-  },
-  amsterdam1: {
-    price: 1325,
-    title: 'Gerenoveerd en nieuw gemeubileerd appartement met 2 slaapkamers',
-    location: 'Amsterdam',
-    bedrooms: 2,
-    description: "Beveiligde entree met intercomsysteem en postbussen.Ingang van het appartement, hal met toilet. Fantastisch ingerichte Z-vormige woonkamer met open keuken die volledig is uitgerust met een koelkast met vriesvak, vaatwasser, magnetron / oven, vaatwasser en spoelbak met geïntegreerde Quooker. Via openslaande deuren toegang tot het heerlijke balkon met buitenlicht en elektriciteit.Aan de andere kant van het appartement vindt u de berging met een wasmachine en droger.Ouderslaapkamer ingericht met een tweepersoonsbed, grote kledingkast. Tweede slaapkamer met een slaapbank. De goed uitgeruste badkamer is afgewerkt met een ligbad, inloopdouche en wastafel met een spiegel. <br> Opmerkingen:<br>- De huurprijs is exclusief gas, water en elektra, tv / internet en gemeentelijke belastingen;<br>- Laminaat in het hele appartement;<br>- Centrale verwarming en mechanische ventilatie;<br>- Exclusief maandelijkse servicekosten van € 130,00;<br>- Borg: 2 maanden huur<br>- Fietsenstalling op de begane grond en berging in het appartement;<br>- De minimale huurperiode is 2 maanden."
-  }
-}
+configure do
+  set :environment, :production
+  set :bind, '0.0.0.0'
+  set :port, 443
+  set :server, "thin"
+  class << settings
+    def server_settings
+      {
+        :backend          => MyThinBackend,
+        :private_key_file => "ssl/private.key",
+        :cert_chain_file  => "ssl/certificate.crt",
+        :verify_peer      => false
+      }
+    end
+  end
+end
 
 class Apartment
   include Mongoid::Document
