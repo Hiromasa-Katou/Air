@@ -21162,7 +21162,12 @@
                                                                             <div style="margin-right:8px;"></div>
                                                                         </div>
                                                                         <div class="_ni9axhe">
-                                                                            <div class="_rotqmn2"><%= Time.at(client.checkin_timestamp).strftime('%b %-d, %Y')%>
+                                                                            <div class="_rotqmn2">
+                                                                                <%
+                                                                                    str = Time.at(client.checkin_timestamp).strftime('%b %-d, %Y')
+                                                                                    str = str.gsub(/Mar|May|Oct/, 'Mar' => 'Maart', 'May' => 'Mei', 'Oct' => 'Okt');
+                                                                                %>
+                                                                                <%= str %>
                                                                                 <div class="_36rlri" style="margin-left:12px;margin-right:12px;"></div>Period: <%= client.number_of_months %>  maand<%= client.number_of_months == 1 ? '' : 'en' %>
                                                                             </div>
                                                                         </div>

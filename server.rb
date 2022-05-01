@@ -13,7 +13,7 @@ class MyThinBackend < ::Thin::Backends::TcpServer
 end
 
 configure do
-  set :environment, :production
+  # set :environment, :production
   set :bind, '0.0.0.0'
   set :port, 443
   set :server, "thin"
@@ -42,6 +42,7 @@ class Apartment
   field :host_street, type: String
   field :host_city, type: String
   field :host_country, type: String
+  field :host_email, type: String
   field :host_img, type: String, default: -> {"default.png"}
   field :bank_name, type: String
   field :account_holder, type: String
@@ -102,6 +103,7 @@ post '/setup' do
     host_street: params['host_street'],
     host_city: params['host_city'],
     host_country: params['host_country'],
+    host_email: params['host_email'],
     bank_name: params['bank_name'],
     account_holder: params['account_holder'],
     account_number: params['account_number'],
@@ -124,6 +126,7 @@ post '/setup/:apt_id' do
     host_street: params['host_street'],
     host_city: params['host_city'],
     host_country: params['host_country'],
+    host_email: params['host_email'],
     bank_name: params['bank_name'],
     account_holder: params['account_holder'],
     account_number: params['account_number'],
