@@ -19149,13 +19149,13 @@
                                           <div class="_1opbq4k4 zoom" aria-hidden="true">
                                               <img height="100%" src="/images/<%= apt_id %>/<%= images[0] %>" class="_uttz43" style="top: 0px;" onclick="$('.lightgallery-photo:eq(0)').trigger('click'); return false;">
                                           </div>
-                                          <% images[1..10].each_slice(2) do |image1, image2| %>
+                                          <% images[1..8].each_slice(2).with_index  do |(image1, image2), i| %>
                                             <div class="_5wyht9u">
                                                 <div class="_1kphsta0 zoom" aria-hidden="true">
-                                                    <img height="100%" width="100%" src="/images/<%= apt_id %>/<%= image1 %>" class="_uttz43" style="top: 0px; object-fit:cover;" onclick="$('.lightgallery-photo:eq(1)').trigger('click'); return false;">
+                                                    <img height="100%" width="100%" src="/images/<%= apt_id %>/<%= image1 %>" class="_uttz43" style="top: 0px; object-fit:cover;" onclick="$('.lightgallery-photo:eq(<%= i*2+1 %>)').trigger('click'); return false;">
                                                 </div>
                                                 <div class="_1kphsta0 zoom" aria-hidden="true">
-                                                    <img height="100%" width="100%"  src="/images/<%= apt_id %>/<%= image2 %>" class="_uttz43" style="top: 0px; object-fit:cover;" onclick="$('.lightgallery-photo:eq(2)').trigger('click'); return false;">
+                                                    <img height="100%" width="100%"  src="/images/<%= apt_id %>/<%= image2 %>" class="_uttz43" style="top: 0px; object-fit:cover;" onclick="$('.lightgallery-photo:eq(<%= i*2+2 %>)').trigger('click'); return false;">
                                                 </div>
                                             </div>
                                           <% end %>
@@ -19790,7 +19790,7 @@
                                 vertical-align: middle !important;
                                 background-color: #000000 !important;
                                 position: relative !important;
-                                width: 67% !important;
+                                width: 90% !important;
                                 height: 294.6666666666667px !important;
                                 border-width: 1px !important;
                                 border-color: undefined !important;
@@ -19835,7 +19835,7 @@
 
                             @media (min-width: 1128px) {
                                 ._1opbq4k4 {
-                                    width: 50% !important;
+                                    width: 70% !important;
                                 }
                                 @media (min-height: 700px) {
                                     ._1opbq4k4 {
@@ -21593,7 +21593,7 @@
                                                                         <div style="margin-right:8px;"><span class="_1mszfa7p"><span class="_1r3plqb" aria-hidden="true"><i class="fa fa-users" aria-hidden="true"></i></span></span>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="_1thk0tsb"><span class="_y8ard79"><%= apt[:bedrooms] * 2%> gasten</span></div>
+                                                                    <div class="_1thk0tsb"><span class="_y8ard79"><%= apt[:bedrooms] * 2 + 2%> gasten</span></div>
                                                                 </div>
                                                             </div>
                                                             <div class="_36rlri" style="margin-right:16px;">
@@ -21750,7 +21750,7 @@
                                                                                                 <div class="_y9ev9r">
                                                                                                     <select id="number_of_guests" name="number_of_guests" class="_4nlkxxs" required="true" style="font-size: 16px !important; font-weight: 400 !important;">
 
-                                                                                                        <% for i in 1..apt[:bedrooms] * 2 do %>
+                                                                                                        <% for i in 1..apt[:bedrooms] * 2 + 2 do %>
                                                                                                             <option value="<%= i %>"><%= i %> gasten</option>
                                                                                                         <% end %>
 
@@ -22159,7 +22159,7 @@
                                                                                                                     <path d="m18.84 15.35c.1.11-1.44-1.52-1.68-1.83a13.4 13.4 0 0 1 -1.18-1.53c-.1-.14-.69-1.07-.86-1.3-.83-1.19-1.65-1.68-3.13-1.69h-.01c-1.47 0-2.29.5-3.13 1.69-.17.24-.76 1.16-.86 1.3a13.18 13.18 0 0 1 -1.16 1.51c-.26.33-1.79 1.96-1.7 1.85-.49.53-.87.98-1.19 1.42-.6.83-.94 1.55-.96 2.23-.2 2.31 1.73 4.03 4.22 4 .88 0 1.43-.2 2.21-.68l.22-.13c.79-.49 1.33-.67 2.34-.67s1.55.18 2.34.67l.22.13c.79.48 1.33.68 2.22.68 2.49.02 4.41-1.7 4.22-4.03-.02-.65-.36-1.38-.96-2.2-.32-.44-.7-.89-1.19-1.42zm-2.06 6.65c-.67 0-1.05-.14-1.7-.53l-.22-.13c-.93-.57-1.64-.82-2.86-.82h-.02c-1.21 0-1.93.24-2.86.82l-.22.13c-.64.4-1.02.53-1.69.53-1.95.02-3.36-1.25-3.22-2.94.02-.46.28-1.02.77-1.7.29-.4.65-.83 1.11-1.34-.13.14 1.45-1.54 1.72-1.88.44-.49.82-1 1.22-1.59.11-.16.69-1.07.85-1.29.66-.94 1.19-1.26 2.31-1.26s1.66.32 2.31 1.26c.15.22.74 1.13.85 1.29.4.6.79 1.11 1.24 1.62.25.32 1.84 2 1.7 1.86.46.51.82.93 1.11 1.34.49.68.76 1.24.77 1.68.15 1.72-1.27 2.99-3.21 2.97zm-8.78-14c1.7 0 3-1.82 3-4s-1.3-4-3-4-3 1.82-3 4 1.3 4 3 4zm0-7c1.06 0 2 1.31 2 3s-.94 3-2 3-2-1.31-2-3 .94-3 2-3zm-2 10c0-2.18-1.3-4-3-4s-3 1.82-3 4 1.3 4 3 4 3-1.82 3-4zm-3 3c-1.06 0-2-1.31-2-3s .94-3 2-3 2 1.31 2 3-.94 3-2 3zm18-7c-1.7 0-3 1.82-3 4s1.3 4 3 4 3-1.82 3-4-1.3-4-3-4zm0 7c-1.06 0-2-1.31-2-3s .94-3 2-3 2 1.31 2 3-.94 3-2 3zm-5-6c1.7 0 3-1.82 3-4s-1.3-4-3-4-3 1.82-3 4 1.3 4 3 4zm0-7c1.06 0 2 1.31 2 3s-.94 3-2 3-2-1.31-2-3 .94-3 2-3z" fill-rule="evenodd"></path>
                                                                                                                 </svg>
                                                                                                             </div>
-                                                                                                            <strong>Huisdieren niet toegestaan</strong>
+                                                                                                            <strong>Huisdieren toegestaan</strong>
                                                                                                         </div>
                                                                                                     </div>
 
@@ -23305,7 +23305,7 @@
                                                 <span>
                                                     <%= apt[:host_city]%>, <%= apt[:host_country] %><span aria-hidden="true"> - </span>
                                                 </span>
-                                                <span>Lid sinds mei 2017</span>
+                                                <span>Lid sinds mei 2015</span>
                                             </div>
                                         </div>
                                     </div>

@@ -285,3 +285,7 @@ get '/get_payments/:id' do
   send_file zipfile_name
   redirect("/client")
 end
+
+not_found do
+  halt 404
+end
