@@ -4534,11 +4534,11 @@
         }
 
         [dir="ltr"] ._18ysolj9 {
-            margin-right: 6px !important;
+            margin-right: 4px !important;
         }
 
         [dir="rtl"] ._18ysolj9 {
-            margin-left: 6px !important;
+            margin-left: 4px !important;
         }
 
         ._1pdrnacw {
@@ -9098,11 +9098,11 @@
         }
 
         [dir="ltr"] ._18ysolj9 {
-            margin-right: 6px !important;
+            margin-right: 4px !important;
         }
 
         [dir="rtl"] ._18ysolj9 {
-            margin-left: 6px !important;
+            margin-left: 4px !important;
         }
 
         ._1pdrnacw {
@@ -12843,11 +12843,11 @@
         }
 
         [dir="ltr"] ._18ysolj9 {
-            margin-right: 6px !important;
+            margin-right: 4px !important;
         }
 
         [dir="rtl"] ._18ysolj9 {
-            margin-left: 6px !important;
+            margin-left: 4px !important;
         }
 
         ._1pdrnacw {
@@ -17078,11 +17078,11 @@
         }
 
         [dir="ltr"] ._18ysolj9 {
-            margin-right: 6px !important;
+            margin-right: 4px !important;
         }
 
         [dir="rtl"] ._18ysolj9 {
-            margin-left: 6px !important;
+            margin-left: 4px !important;
         }
 
         ._1pdrnacw {
@@ -18536,7 +18536,7 @@
                             <header>
                               <div class="_11qg6v7y">
                                 <div id="dls-modal__contact-modal">
-                                  <div class="_1247r3vd"><span>Contact <%= host_name %></span></div>
+                                  <div class="_1247r3vd"><span>Contacteer <%= host_name %></span></div>
                                 </div>
                               </div>
                             </header>
@@ -19147,9 +19147,10 @@
                                         </div>
                                         <div class="_167bw5o" id="desktop-photos">
                                           <div class="_1opbq4k4 zoom" aria-hidden="true">
-                                              <img height="100%" src="/images/<%= apt_id %>/<%= images[0] %>" class="_uttz43" style="top: 0px;" onclick="$('.lightgallery-photo:eq(0)').trigger('click'); return false;">
+                                              <img height="100%" width="100%" src="/images/<%= apt_id %>/<%= images[0] %>" class="_uttz43" style="top: 0px;" onclick="$('.lightgallery-photo:eq(0)').trigger('click'); return false;">
                                           </div>
                                           <% images[1..8].each_slice(2).with_index  do |(image1, image2), i| %>
+                                          <% if image2 %>
                                             <div class="_5wyht9u">
                                                 <div class="_1kphsta0 zoom" aria-hidden="true">
                                                     <img height="100%" width="100%" src="/images/<%= apt_id %>/<%= image1 %>" class="_uttz43" style="top: 0px; object-fit:cover;" onclick="$('.lightgallery-photo:eq(<%= i*2+1 %>)').trigger('click'); return false;">
@@ -19158,6 +19159,7 @@
                                                     <img height="100%" width="100%"  src="/images/<%= apt_id %>/<%= image2 %>" class="_uttz43" style="top: 0px; object-fit:cover;" onclick="$('.lightgallery-photo:eq(<%= i*2+2 %>)').trigger('click'); return false;">
                                                 </div>
                                             </div>
+                                          <% end %>
                                           <% end %>
                                             <div class="_1f4354o4">
                                                 <button type="button" class="_mpd8jid" aria-busy="false" onclick="$('.lightgallery-photo:first').trigger('click'); return false;"><span class="_1jrfuygv">Foto's bekijken</span></button>

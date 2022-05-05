@@ -21133,7 +21133,8 @@
                                                                     </div>
                                                                     <div class="_ni9axhe">
                                                                         <div class="_e296pg" style="width:100px;height:80px;">
-                                                                            <a href="/apartments/<%=client.selected_property%>"><img class="_1u6feuz3" src="/images/<%= client.selected_property %>/pic1.jpg" alt="Property image" width="100" height="80" /></a>
+                                                <% images = Dir.entries(File.join('public/images/', client.selected_property)).reject {|file| file.start_with? '.'}.sort_by { |x| x[/\d+/].to_i } %>
+                                                                            <a href="/apartments/<%=client.selected_property%>"><img class="_1u6feuz3" src="/images/<%= client.selected_property %>/<%= images[0] %>" alt="Property image" width="100" height="80" /></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
